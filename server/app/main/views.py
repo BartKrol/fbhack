@@ -18,11 +18,12 @@ def image():
         
         token = str(get_image_token(image_url))
         json_data = get_image_response(token)
-        
-        
+
         freebase = Freebase(json_data['name'])
         
-        print freebase.get_categories()
+        html = freebase.get_html('london')
         
-        return json.dumps(json_data)
+        response = {'status': 'ok', 'html': html}
+        
+        return json.dumps(response)
         #return 'HI'
