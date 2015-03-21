@@ -21,7 +21,7 @@ class People:
 
     def p_twitter(self):
 
-        twitter_mappings = {"Queen Elizabeth": "BritishMonarchy"}
+        twitter_mappings = {"queen elizabeth": "BritishMonarchy"}
 
         api_key = "***REMOVED***"
         api_secret = "***REMOVED***"
@@ -56,7 +56,7 @@ class People:
 
     def p_facebook_page(self):
 
-        fb_mappings = {"Queen Elizabeth": "TheBritishMonarchy"}
+        fb_mappings = {"queen elizabeth": "TheBritishMonarchy"}
 
         id = 0
         if self.name in fb_mappings:

@@ -20,10 +20,10 @@ class Freebase:
                    'white',
                    'yellow']
         
-        tags = tags.split(" ")
+        tags = tags.lower().split(" ")
         f_tags = []
         for t in tags:
-            if t.lower() not in colours:
+            if t not in colours:
                 f_tags.append(t)
         
         self.tags = " ".join(f_tags[:2])
