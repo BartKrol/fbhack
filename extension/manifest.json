@@ -18,7 +18,7 @@
         "https://*/*"
       ],
       "js": [
-        "bower_components/jquery/dist/jquery.min.js",
+
         "content.js"
       ]
     }
@@ -34,6 +34,7 @@
   },
   "web_accessible_resources": [
     "bower_components/jquery/dist/jquery.min.js",
-    "bower_components/jquery/dist/jquery.min.map"
+    "bower_components/jquery/dist/jquery.min.map",
+    "custom_js.js"
   ]
 }
