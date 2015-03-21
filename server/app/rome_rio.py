@@ -17,5 +17,6 @@ def get_route(from_name, to_name):
 
 
 def get_rome_rio(from_name, to_name, preview=False):
-    route = get_route(from_name, to_name)
-    return render_template('route.html', route=route, preview=preview)
+    routes = get_route(from_name, to_name)
+    routes = routes['routes'][0:3]
+    return render_template('route.html', routes=routes, preview=preview)
