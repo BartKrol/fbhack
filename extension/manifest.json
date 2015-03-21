@@ -23,7 +23,9 @@
       ],
       "css":[
         "style.css",
-        "styles.css"
+        "styles.css",
+        "people.css",
+        "tabs.css"
         
       ]
     }
@@ -42,6 +44,7 @@
   "web_accessible_resources": [
     "bower_components/jquery/dist/jquery.min.js",
     "bower_components/jquery/dist/jquery.min.map",
+    "tabs.js",
     "custom_js.js"
   ]
 }

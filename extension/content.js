@@ -21,7 +21,17 @@ function convertImgToBase64(url, callback, outputFormat) {
 
     var scriptJ = document.createElement('script');
     scriptJ.src = chrome.extension.getURL('/bower_components/jquery/dist/jquery.min.js');
+    scriptJ.onload = function()
+    {
+        var tabsJS = document.createElement('script');
+        tabsJS.src = chrome.extension.getURL('/tabs.js');
+        document.getElementsByTagName('head')[0].appendChild(tabsJS);
+        
+    };
+    
     document.getElementsByTagName('head')[0].appendChild(scriptJ);
+
+    
 
     var script = document.createElement('script');
     script.src = chrome.extension.getURL('/custom_js.js');
@@ -46,10 +56,20 @@ function convertImgToBase64(url, callback, outputFormat) {
 
                         $.post('https://127.0.0.1:5000/image',{'url': imgData.split(',')[1]}, function (data) {
                            
-                           $('div._10').remove();
+                          // $('div._10').remove();
                             var json = JSON.parse(data);
                             var results = document.getElementById('info-results');
                             results.innerHTML = json['html'];
+
+                            $('ul.tabs li').click(function(){
+                                var tab_id = $(this).attr('data-tab');
+
+                                $('ul.tabs li').removeClass('current');
+                                $('.tab-content').removeClass('current');
+
+                                $(this).addClass('current');
+                                $("#"+tab_id).addClass('current');
+                            })
 
                         });
                     });
