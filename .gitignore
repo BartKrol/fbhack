@@ -52,3 +52,12 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# Idea
+.idea
+
+# Javascript
+node_modules/
+bower_components/
+.sass-cache/
+.tmp/
