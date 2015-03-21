@@ -3,10 +3,24 @@
   "name": "Facebook Hackathon",
   "description": "Do awesome stuff!",
   "version": "1.0",
+  "background_page": "background.html",
   "browser_action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html"
+    "name": "Manipulate DOM",
+    "icons": ["icon.png"],
+    "default_icon": "icon.png"
   },
+  "content_scripts": [
+    {
+      "js": [
+        "bower_components/dist/jquery.min.js",
+        "background.js"
+      ],
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ]
+    }
+  ],
   "permissions": [
     "activeTab",
     "https://ajax.googleapis.com/"

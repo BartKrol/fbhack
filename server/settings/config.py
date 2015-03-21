@@ -16,29 +16,6 @@ class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or 'mysql://fbhack:lamepass@mysql-server.cpuzylmwupp3.us-west-2.rds.amazonaws.com/facebookhack'
 
-    JWT_AUTH_URL_RULE = '/api/auth/'
-
-    @staticmethod
-    def static_files_endpoint(app):
-        index = lambda: app.send_static_file('index.html')
-        app.add_url_rule('/', 'index', index)
-
-        static_files = lambda path: app.send_static_file('{0}'.format(path))
-        app.add_url_rule('/<path:path>', 'static_files', static_files)
-
-    @staticmethod
-    def init_app(app):
-        if os.environ.get('CLIENT_DIST_FOLDER'):
-            app.static_folder = os.environ.get('CLIENT_DIST_FOLDER')
-            app.static_url_path = ''
-            DevelopmentConfig.static_files_endpoint(app)
-
-
-class TestingConfig(Config):
-    TESTING = True
-    SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL') or \
-                              'sqlite:///' + os.path.join(basedir, 'data-test.sqlite')
-
 
 class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
@@ -47,7 +24,5 @@ class ProductionConfig(Config):
 
 config = {
     'development': DevelopmentConfig,
-    'testing': TestingConfig,
-    'production': ProductionConfig,
     'default': DevelopmentConfig
 }

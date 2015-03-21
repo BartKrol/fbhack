@@ -1,7 +1,6 @@
 from flask import Flask
 from settings.config import config
 from .extensions import db, migrate, bootstrap
-from flask.ext.restful import Api
 
 
 def create_app(config_name):
@@ -12,18 +11,18 @@ def create_app(config_name):
 
     register_extensions(app)
 
-    # TODO - better solution
-    api = Api(app)
+    from main import main as main_blueprint
+    app.register_blueprint(main_blueprint, url_prefix='/')
 
-
-    #api.add_resource(resources.PopularShows, api_url + '/popular')
+    # TODO - remove
+    from . import models
 
     return app
+
 
 def register_extensions(app):
     """Register flask extensions"""
     db.init_app(app)
     bootstrap.init_app(app)
     migrate.init_app(app, db)
-
 
