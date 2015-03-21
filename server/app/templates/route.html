@@ -4,19 +4,35 @@
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='tabs.css') }}">
 {% endif %}
 
-<div class="container">
+<div class="tab-container">
     <ul class="tabs">
         {% for route in routes %}
 
-            <li class="tab-link {% if loop.index == 1 %}current {% endif %}" data-tab="tab-{{ loop.index }}">Route {{ loop.index }}</li>
+            <li class="tab-link {% if loop.first %}current {% endif %}" data-tab="tab-{{ loop.index }}">
+                Route {{ loop.index }}</li>
         {% endfor %}
     </ul>
 
     {% for route in routes %}
-        <div id="tab-{{ loop.index }}" class="tab-content {% if loop.index == 1 %}current {% endif %}">
-        {{ route.stops[0].name }} - {{ route.stops[1].name }}
+        <div id="tab-{{ loop.index }}" class="tab-content {% if loop.first %}current {% endif %}">
+            {% for stop in route.stops %}
+                {% if loop.first  == 1 %}
+                    <strong>{{ stop.name }}</strong> -
+                {% elif loop.last %}
+                    <strong>{{ stop.name }}</strong>
+                {% else %}
+                    {{ stop.name }} -
+                {% endif %}
+            {% endfor %}
+
+            <p><strong>Price</strong>: {{ route.indicativePrice.price }}{{ route.indicativePrice.currency }} </p>
+
+            <p><strong>Duration</strong>: {{ route.duration }} </p>
+
+            <a href="{{ route.segments[0].itineraries[0].legs[0].url }}" class="route-button "target="_blank">Book Journey</a>
+
         </div>
     {% endfor %}
 
-</div><!-- container -->
+</div>
 
