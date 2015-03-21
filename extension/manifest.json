@@ -1,28 +1,39 @@
 {
   "manifest_version": 2,
-  "name": "Facebook Hackathon",
-  "description": "Do awesome stuff!",
-  "version": "1.0",
-  "background_page": "background.html",
-  "browser_action": {
-    "name": "Manipulate DOM",
-    "icons": ["icon.png"],
-    "default_icon": "icon.png"
+  "name": "My Extension",
+  "version": "2.1",
+  "description": "Gets information from Google.",
+  "icons": {"256": "icon.png"},
+  "background": {
+    "persistent": false,
+    "scripts": [
+      "bower_components/jquery/dist/jquery.min.js",
+      "background.js"
+    ]
   },
   "content_scripts": [
     {
-      "js": [
-        "bower_components/dist/jquery.min.js",
-        "background.js"
-      ],
       "matches": [
         "http://*/*",
         "https://*/*"
+      ],
+      "js": [
+        "bower_components/jquery/dist/jquery.min.js",
+        "content.js"
       ]
     }
   ],
   "permissions": [
+    "http://*.google.com/",
+    "https://*.google.com/",
     "activeTab",
     "https://ajax.googleapis.com/"
+  ],
+  "browser_action": {
+    "default_title": "Make this page red"
+  },
+  "web_accessible_resources": [
+    "bower_components/jquery/dist/jquery.min.js",
+    "bower_components/jquery/dist/jquery.min.map"
   ]
 }
