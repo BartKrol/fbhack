@@ -20,6 +20,11 @@ def make_shell_context():
 
 
 @manager.command
+def runserver():
+    app.run(host='127.0.0.1', port=5000, debug=True,
+            ssl_context='adhoc')
+
+@manager.command
 def test(coverage=False):
     """Run unit tests."""
     import nose2
