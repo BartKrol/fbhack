@@ -3,10 +3,11 @@
 
 import os
 
-from flask.ext.script import Manager, Shell, Server
+from flask.ext.script import Manager, Shell
 from flask.ext.migrate import MigrateCommand
 
 from app.app import create_app
+from app.extensions import db
 
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
@@ -17,13 +18,14 @@ def make_shell_context():
     """Populate stuff in flask shell"""
     return dict(app=app, db=db)
 
+
 @manager.command
 def test(coverage=False):
     """Run unit tests."""
     import nose2
 
     script_path = os.path.realpath(__file__)
-    server_path = os.path.dirname(script_path) #+ '/tests'
+    server_path = os.path.dirname(script_path)  # + '/tests'
 
     # Remember that the first argument is always current file
     arguments = [script_path, '-s', server_path]
