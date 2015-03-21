@@ -1,7 +1,8 @@
 from flask import Flask
 from settings.config import config
-from .extensions import jwt, db, migrate, bootstrap
+from .extensions import db, migrate, bootstrap
 from flask.ext.restful import Api
+
 
 def create_app(config_name):
     """Create a flask app from a config"""
@@ -14,9 +15,7 @@ def create_app(config_name):
     # TODO - better solution
     api = Api(app)
 
-    #api_url = '/api/v1'
 
-    #api = Api(app)
     #api.add_resource(resources.PopularShows, api_url + '/popular')
 
     return app
