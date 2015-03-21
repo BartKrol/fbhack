@@ -14,6 +14,9 @@ def create_app(config_name):
     from main import main as main_blueprint
     app.register_blueprint(main_blueprint, url_prefix='/')
 
+    # TODO - remove
+    from . import models
+
     return app
 
 
@@ -22,5 +25,4 @@ def register_extensions(app):
     db.init_app(app)
     bootstrap.init_app(app)
     migrate.init_app(app, db)
-
 
