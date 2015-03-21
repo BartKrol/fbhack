@@ -1,0 +1,40 @@
+#fb-logo {
+    height: 50px;
+}
+#tw-logo {
+    height: 50px;
+}
+a {
+color: black;
+}
+#followers {
+    color: gray;
+    font-size: 12px;
+}
+
+.tweet {
+    font-size: 15px;
+    padding: 5px;
+}
+#about {
+    font-size: 14px;
+    padding: 4px;
+}
+.tweet_ca {
+   width: 100%;
+   color: gray;
+   text-align: right;
+   font-size: 10px;
+}
+.post {
+    padding: 5px;
+}
+.post img {
+width: 30%;
+}
+.post_text {
+    display: inline-block;
+    padding: 5px;
+    font-size: 12px;
+    width: 60%;
+}

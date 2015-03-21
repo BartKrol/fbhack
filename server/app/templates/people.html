@@ -17,18 +17,29 @@
 
 <div id="tab-1" class="tab-content current">
     <img src="{{ twitter["image"] }}" alt="Twitter Account">
-    <a href="http://twitter.com/{{ twitter["sname"] }}">{{ twitter["name"] }}</a>
+    <a href="http://twitter.com/{{ twitter["sname"] }}">{{ twitter["name"] }} (@{{ twitter["sname"] }})</a>
     <div id="followers">
         Followers:  {{ twitter["followers"] }}
     </div>
     {% for tweet in twitter["tweets"] %}
     <div class="tweet">
-        @{{ tweet.author.name }} {{ tweet.text }}
+        {{ tweet.text }}
+        <div class="tweet_ca">{{tweet.created_at}}</div>
     </div>
     {% endfor %}
 </div>
 <div id="tab-2" class="tab-content">
     <img src="{{ facebook["picture"] }}" alt="Profile Picture">
-    <a href="http://facebook.com/ {{ facebook["id"] }}"> {{ facebook["name"] }} </a>
+    <a href="http://facebook.com/ {{ facebook["id"] }}">{{ facebook["name"] }}</a>
+    <div id="about">{{ facebook["about"] }}</div>
+    {% for post in facebook["posts"] %}
+    <div class="post">
+        <img src="{{ post.picture }}">
+        <div class="post_text">
+            {{ post.message }}
+        {{ post.story }}
+        </div>
+    </div>
+    {% endfor %}
 </div>
 
