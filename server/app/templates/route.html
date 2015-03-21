@@ -1,0 +1,22 @@
+{% if preview %}
+    <script type="text/javascript" src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='tabs.js') }}"></script>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='tabs.css') }}">
+{% endif %}
+
+<div class="container">
+    <ul class="tabs">
+        {% for route in routes %}
+
+            <li class="tab-link {% if loop.index == 1 %}current {% endif %}" data-tab="tab-{{ loop.index }}">Route {{ loop.index }}</li>
+        {% endfor %}
+    </ul>
+
+    {% for route in routes %}
+        <div id="tab-{{ loop.index }}" class="tab-content {% if loop.index == 1 %}current {% endif %}">
+        {{ route.stops[0].name }} - {{ route.stops[1].name }}
+        </div>
+    {% endfor %}
+
+</div><!-- container -->
+
