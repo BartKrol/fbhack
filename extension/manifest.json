@@ -20,6 +20,10 @@
       "js": [
         "bower_components/jquery/dist/jquery.min.js",
         "content.js"
+      ],
+      "css":[
+        "style.css"
+        
       ]
     }
   ],

@@ -16,6 +16,7 @@ function convertImgToBase64(url, callback, outputFormat) {
 }
 
 
+
 (function () {
 
     var scriptJ = document.createElement('script');
@@ -37,13 +38,15 @@ function convertImgToBase64(url, callback, outputFormat) {
                 link.innerText = 'Get Info';
                 link.onclick = function () {
 
-                    var img = $('img.spotlight').attr('src');
+                   var img = $('img.spotlight').attr('src');
 
                     convertImgToBase64(img, function (imgData) {
                         console.log(imgData);
 
 
                         $.post('https://127.0.0.1:5000/image',{'url': imgData.split(',')[1]}, function (data) {
+                           
+                           $('div._10').remove();
                             var json = JSON.parse(data);
                             var results = document.getElementById('info-results');
                             results.innerHTML = json['html'];
