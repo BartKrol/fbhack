@@ -1,6 +1,9 @@
 import urllib2
 import urllib
 import json
+import people
+import amazon_search
+import rome_rio
 
 class Freebase:
     def __init__(self,tags):
@@ -62,6 +65,17 @@ class Freebase:
             return bindings[self.category]
         else:
             return "BUY"
+
+    def get_html(self, position):
+        mod = self.get_module()
+        if mod == "PER":
+            p = people.People(self.tags)
+            return p.get_html()
+        elif mod == "GEO":
+            return rome_rio.get_route(position, self.tags)
+        elif mod == "BUY":
+            return amazon_search.get_amazon_items(self.tags, False)
+
 
 def check(token):
     base = Freebase(token)

@@ -2,6 +2,8 @@ import tweepy
 import json
 import urllib2
 import urllib
+from flask import render_template
+import unirest
 
 class People:
     def __init__(self, name):
@@ -13,6 +15,9 @@ class People:
         self.twitter = {}
 
         self.facebook = {}
+
+        self.twitter()
+        self.facebook()
 
     def twitter(self):
 
@@ -48,7 +53,7 @@ class People:
 
     def fb_img(self, query):
         return self.facebook_api+query+"&access_token="+self.facebook_token
-    
+
     def fb_json(self, query):
         token = self.fb_img(query)
         response = urllib2.urlopen(token)
@@ -79,27 +84,4 @@ class People:
         self.facebook = {"id": id, "name": page["name"], "about": about, "posts": posts["data"][:3], "picture": self.fb_img(id+"/picture?")}
 
     def get_html(self):
-        twitter = "<div id=\"twitter\"> " \
-                  "<img src=\""+self.twitter["image"]+"\" alt=\"Twitter Account\"> " \
-                  "<a href=\"http://twitter.com/"+self.twitter["sname"]+"\">"+self.twitter["name"]+"</a>" \
-                  "Followers: "+str(self.twitter["followers"])+"</div>"
-        facebook = "<div id=\"facebook\"><img src=\""+self.facebook["picture"]+"\" alt=\"Profile Picture\">" \
-                  "<a href=\"http://facebook.com/"+self.facebook["id"]+"\">"+self.facebook["name"]+"</a>" \
-                  "</div>"
-
-        return twitter+facebook
-
-p = People("Queen Elizabeth")
-p.twitter()
-p.facebook_page()
-print p.get_html()
-
-p = People("Kylie Minogue")
-p.twitter()
-p.facebook_page()
-print p.get_html()
-
-p = People("Brad Pitt")
-p.twitter()
-p.facebook_page()
-print p.get_html()
+        return render_template('people.html', facebook=self.facebook, twitter=self.twitter)
