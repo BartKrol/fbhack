@@ -1,7 +1,6 @@
 import unirest
 from models import Image
-import json
-from app.extensions import db
+from .extensions import db
 import urllib
 import time
 import os
@@ -40,13 +39,13 @@ def get_image_token(image_url):
                                 }
         )
 
-        json_response = json.loads(response.body)
+        json_response = response.body
 
-        img = Image(hash, json_response.token, '')
+        img = Image(hash, json_response['token'], '')
         db.session.add(img)
         db.session.commit()
 
-        return json_response.token
+        return json_response['token']
     
     else:
         return retrieved_image.token
@@ -60,7 +59,7 @@ def get_image_response(token):
                            }
     )
 
-    json_response = json.loads(response.body)
+    json_response = response.body
     
     
     #{status: '', reason: '', name:''}
