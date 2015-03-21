@@ -91,7 +91,7 @@ class Freebase:
         mod = self.get_module()
         if mod == "PER":
             p = people.People(self.tags)
-            return p.get_html()
+            return p.get_html(False)
         elif mod == "GEO":
             return rome_rio.get_route(position, self.tags)
         elif mod == "BUY":

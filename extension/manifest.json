@@ -22,7 +22,8 @@
         "content.js"
       ],
       "css":[
-        "style.css"
+        "style.css",
+        "styles.css"
         
       ]
     }
