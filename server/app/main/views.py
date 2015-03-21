@@ -6,6 +6,7 @@ from app.camfind import *
 def hello():
     return 'Server is running'
 
+
 @main.route("image", methods=['GET', 'POST'])
 def image():
     if request.method == 'GET':

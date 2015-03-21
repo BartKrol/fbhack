@@ -1,0 +1,17 @@
+{% if preview %}
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+{% endif %}
+
+{% for product in products %}
+    <div class="amazon-item">
+        <div class="amazon-title">
+            {{ product.title }}
+        </div>
+        <div class="amazon-image">
+            <img src="{{ product.medium_image_url }}"/>
+        </div>
+        <div class="amazon-content">
+            {{ product.list_price[0] }}{{ product.list_price[1] }}
+        </div>
+    </div>
+{% endfor %}
