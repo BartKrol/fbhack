@@ -55,6 +55,7 @@ target/
 
 # Idea
 .idea
+*.sqlite
 
 # Javascript
 node_modules/
