@@ -7,8 +7,26 @@ import rome_rio
 
 class Freebase:
     def __init__(self,tags):
+        
+        colours = ['black',
+                   'blue',
+                   'brown',
+                   'gray',
+                   'green',
+                   'orange',
+                   'pink',
+                   'purple',
+                   'red',
+                   'white',
+                   'yellow']
+        
         tags = tags.split(" ")
-        self.tags = " ".join(tags[:2])
+        f_tags = []
+        for t in tags:
+            if t.lower() not in colours:
+                f_tags.append(t)
+        
+        self.tags = " ".join(f_tags[:2])
         self.name = ""
         self.category = ""
         self.description = ""
