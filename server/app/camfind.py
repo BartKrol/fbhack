@@ -24,14 +24,9 @@ def get_image_hash(image_url):
 
 def get_image_token(image_url):
     hash = get_image_hash(image_url)
+    retrieved_image = Image.query.filter_by(md5=hash).first()
     
-    try:
-        retrieved_image = Image.query.filter_by(md5=hash).first()
-        
-        return retrieved_image.token
-    
-    except:
-    
+    if retrieved_image is None:
         response = unirest.post(api_url_req,
                                 headers={
                                     "X-Mashape-Key": api_key,
@@ -44,14 +39,17 @@ def get_image_token(image_url):
                                     "image_request[remote_image_url]": image_url
                                 }
         )
-        
+
         json_response = json.loads(response.body)
-        
+
         img = Image(hash, json_response.token, '')
         db.session.add(img)
         db.session.commit()
-        
+
         return json_response.token
+    
+    else:
+        return retrieved_image.token
 
 
 def get_image_response(token):
