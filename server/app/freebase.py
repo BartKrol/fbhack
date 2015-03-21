@@ -8,7 +8,7 @@ import rome_rio
 class Freebase:
     def __init__(self,tags):
         tags = tags.split(" ")
-        self.tags = " ".join(tags[2:])
+        self.tags = " ".join(tags[:2])
         self.name = ""
         self.category = ""
         self.description = ""
@@ -17,7 +17,8 @@ class Freebase:
         self.find_categories()
 
     def find_categories(self):
-        response = urllib2.urlopen('https://www.googleapis.com/freebase/v1/search?query='+urllib.quote_plus(self.tags)+"&key=***REMOVED***")
+        url = 'https://www.googleapis.com/freebase/v1/search?query='+urllib.quote_plus(self.tags)+"&key=***REMOVED***"
+        response = urllib2.urlopen(url)
         html = response.read()
         article = json.loads(html)
         result = article["result"][0]
@@ -60,7 +61,9 @@ class Freebase:
                     "City/Town/Village": "GEO",
                     "Monarch": "PER",
                     "Noble person": "PER",
-                    "Mountain": "GEO"}
+                    "Mountain": "GEO",
+                    "Actor": "PER",
+                    "Hard rock Artist": "PER"}
         if self.category in bindings.keys():
             return bindings[self.category]
         else:
@@ -75,6 +78,7 @@ class Freebase:
             return rome_rio.get_route(position, self.tags)
         elif mod == "BUY":
             return amazon_search.get_amazon_items(self.tags, False)
+
 
 
 def check(token):
