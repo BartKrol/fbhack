@@ -2,6 +2,7 @@ from flask import request
 from . import main
 from app.camfind import *
 import json
+from app.freebase import Freebase
 
 @main.route("/")
 def hello():
@@ -17,6 +18,11 @@ def image():
         
         token = str(get_image_token(image_url))
         json_data = get_image_response(token)
+        
+        
+        freebase = Freebase(json_data['name'])
+        
+        print freebase.get_categories()
         
         return json.dumps(json_data)
         #return 'HI'

@@ -57,6 +57,7 @@ def get_image_token(image_url):
         return json_response['token']
     
     else:
+        os.remove(filename)
         return retrieved_image.token
 
 
