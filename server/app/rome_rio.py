@@ -16,7 +16,27 @@ def get_route(from_name, to_name):
     return response.body
 
 
+def duration_hours(value):
+    hours = int(value) / 60
+    minutes = int(value) % 60
+
+    ret = ''
+    if hours:
+        ret += str(hours) + 'h '
+
+    ret += str(minutes) + 'min'
+
+    return ret
+
+
 def get_rome_rio(from_name, to_name, preview=False):
-    routes = get_route(from_name, to_name)
-    routes = routes['routes'][0:3]
-    return render_template('route.html', routes=routes, preview=preview)
+    routes = get_route(from_name, to_name)['routes']
+
+    routes = sorted(routes, key=lambda route: int(route['duration']))
+
+    routes = routes[0:3]
+
+    for route in routes:
+        route['duration'] = duration_hours(int(route['duration']))
+
+    return render_template('route.html', routes=routes, preview=preview, duration_hours=duration_hours)

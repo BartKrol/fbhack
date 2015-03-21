@@ -21,7 +21,7 @@ class People:
 
     def p_twitter(self):
 
-        twitter_mappings = {"Queen Elizabeth": "BritishMonarchy"}
+        twitter_mappings = {"Queen+Elizabeth": "BritishMonarchy"}
 
         api_key = "***REMOVED***"
         api_secret = "***REMOVED***"
@@ -42,13 +42,7 @@ class People:
         else:
             user = api.search_users(self.name)[0]
 
-        # print user.timeline()[0].text
-        # print user.timeline()[1].text
-        # print user.timeline()[2].text
-
-        # print user
-
-        self.twitter = {"name": user.name, "tweets": user.timeline()[3:], "image": user.profile_image_url_https,
+        self.twitter = {"name": user.name, "tweets": user.timeline()[:5], "image": user.profile_image_url_https,
                         "followers": user.followers_count, "sname": user.screen_name}
 
     def fb_img(self, query):
@@ -62,7 +56,7 @@ class People:
 
     def p_facebook_page(self):
 
-        fb_mappings = {"Queen Elizabeth": "TheBritishMonarchy"}
+        fb_mappings = {"Queen+Elizabeth": "TheBritishMonarchy"}
 
         id = 0
         if self.name in fb_mappings:
@@ -81,7 +75,7 @@ class People:
         if "about" in page:
             about = page["about"]
 
-        self.facebook = {"id": id, "name": page["name"], "about": about, "posts": posts["data"][:3], "picture": self.fb_img(id+"/picture?")}
+        self.facebook = {"id": id, "name": page["name"], "about": about, "posts": posts["data"][:5], "picture": self.fb_img(id+"/picture?")}
 
     def get_html(self, preview):
         return render_template('people.html', facebook=self.facebook, twitter=self.twitter, preview=preview)
