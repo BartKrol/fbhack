@@ -5,7 +5,7 @@
 {% for product in products %}
     <div class="amazon-item">
         <div class="amazon-title">
-            {{ product.title }}
+            <a href="{{ product.offer_url }}" target="_blank">{{ product.title }}</a>
         </div>
         <div class="amazon-image">
             <img src="{{ product.medium_image_url }}"/>
