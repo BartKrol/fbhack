@@ -16,10 +16,10 @@ class People:
 
         self.facebook = {}
 
-        self.twitter()
-        self.facebook()
+        self.p_twitter()
+        self.p_facebook_page()
 
-    def twitter(self):
+    def p_twitter(self):
 
         twitter_mappings = {"Queen Elizabeth": "BritishMonarchy"}
 
@@ -60,7 +60,7 @@ class People:
         html = response.read()
         return json.loads(html)
 
-    def facebook_page(self):
+    def p_facebook_page(self):
 
         fb_mappings = {"Queen Elizabeth": "TheBritishMonarchy"}
 
@@ -83,5 +83,5 @@ class People:
 
         self.facebook = {"id": id, "name": page["name"], "about": about, "posts": posts["data"][:3], "picture": self.fb_img(id+"/picture?")}
 
-    def get_html(self):
-        return render_template('people.html', facebook=self.facebook, twitter=self.twitter)
+    def get_html(self, preview):
+        return render_template('people.html', facebook=self.facebook, twitter=self.twitter, preview=preview)

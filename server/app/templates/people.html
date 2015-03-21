@@ -1,8 +1,34 @@
-<div id="twitter">
+{% if preview %}
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='people.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='tabs.js') }}"></script>
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='tabs.css') }}">
+{% endif %}
+
+
+<ul class="tabs">
+    <li class="tab-link current" data-tab="tab-1">
+        <img src="https://g.twimg.com/Twitter_logo_blue.png" alt="Twitter Logo" id="tw-logo">
+    </li>
+    <li class="tab-link" data-tab="tab-2">
+        <img src="http://i.forbesimg.com/media/lists/companies/facebook_416x416.jpg" alt="Facebook" id="fb-logo">
+    </li>
+</ul>
+
+<div id="tab-1" class="tab-content current">
     <img src="{{ twitter["image"] }}" alt="Twitter Account">
-    <a href="http://twitter.com/{{ twitter["sname"] }}"> {{ twitter["name"] }} </a>
-    Followers:  {{ twitter["followers"] }} </div>
-<div id="facebook">
-    <img src="{{ self.facebook["picture"] }}" alt="Profile Picture">
-    <a href="http://facebook.com/ {{ self.facebook["id"] }}"> {{ facebook["name"] }} </a>
+    <a href="http://twitter.com/{{ twitter["sname"] }}">{{ twitter["name"] }}</a>
+    <div id="followers">
+        Followers:  {{ twitter["followers"] }}
+    </div>
+    {% for tweet in twitter["tweets"] %}
+    <div class="tweet">
+        @{{ tweet.author.name }} {{ tweet.text }}
+    </div>
+    {% endfor %}
 </div>
+<div id="tab-2" class="tab-content">
+    <img src="{{ facebook["picture"] }}" alt="Profile Picture">
+    <a href="http://facebook.com/ {{ facebook["id"] }}"> {{ facebook["name"] }} </a>
+</div>
+
