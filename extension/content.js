@@ -31,7 +31,7 @@ function convertImgToBase64(url, callback, outputFormat) {
 
             if (document.getElementById('info-data') == null) {
                 var box = document.getElementById('fbPhotoSnowliftViews');
-                box.innerHTML += '<div id="info-data" style="background: rgb(228, 229,233); padding: 3px"><div><b>Info</b></div><div><button onclick="get_more_info()">Show Info</button></div></div>';
+                box.innerHTML += '<div id="info-data" style="background: rgb(228, 229,233); padding: 3px"><div><b>Info</b></div><div id="info-results"></div></div>';
 
                 var link = document.createElement('button');
                 link.innerText = 'Get Info';
@@ -44,8 +44,9 @@ function convertImgToBase64(url, callback, outputFormat) {
 
 
                         $.post('https://127.0.0.1:5000/image',{'url': imgData.split(',')[1]}, function (data) {
-                            // var j = JSON.parse(data);
-                            console.log(data);
+                            var json = JSON.parse(data);
+                            var results = document.getElementById('info-results');
+                            results.innerHTML = json['html'];
 
                         });
                     });
