@@ -38,7 +38,10 @@ ul.tabs li.current {
     display: inherit;
 }
 
-
+a.fbhack-button{
+    padding: 15px;
+    
+}
 
 .fbhack-button,
 .fbhack-button:visited {
