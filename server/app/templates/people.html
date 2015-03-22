@@ -19,10 +19,10 @@
 </ul>
 
 <div id="tab-1" class="tab-content current">
-    <img src="{{ twitter["image"] }}" alt="Twitter Account">
-    <a href="http://twitter.com/{{ twitter["sname"] }}">{{ twitter["name"] }} (@{{ twitter["sname"] }})</a>
+    <img src="{{ twitter[" image"] }}" alt="Twitter Account">
+    <a href="http://twitter.com/{{ twitter[" sname"] }}">{{ twitter["name"] }} (@{{ twitter["sname"] }})</a>
     <div id="followers">
-        Followers:  {{ twitter["followers"] }}
+        Followers: {{ twitter["followers"] }}
     </div>
     {% for tweet in twitter["tweets"] %}
     <div class="tweet">
@@ -32,15 +32,19 @@
     {% endfor %}
 </div>
 <div id="tab-2" class="tab-content">
-    <img src="{{ facebook["picture"] }}" alt="Profile Picture">
-    <a href="http://facebook.com/ {{ facebook["id"] }}">{{ facebook["name"] }}</a>
-    <div id="about">{{ facebook["about"] }}</div>
+    <div class="center-info">
+        <img class="circular-img" src="{{ facebook['picture'] }}" alt="Profile Picture">
+    </div>
+    <a id="fb-name-info" target="_blank" href="http://facebook.com/{{ facebook['id'] }}"><h3>{{ facebook["name"] }}</h3></a>
+    <div id="about"><i>{{ facebook["about"] }}</i></div>
+    <hr/>
     {% for post in facebook["posts"] %}
     <div class="post">
         <img src="{{ post.picture }}">
+
         <div class="post_text">
             {{ post.message }}
-        {{ post.story }}
+            {{ post.story }}
         </div>
     </div>
 
