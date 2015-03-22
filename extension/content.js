@@ -16,22 +16,19 @@ function convertImgToBase64(url, callback, outputFormat) {
 }
 
 
-
 (function () {
 
     var scriptJ = document.createElement('script');
     scriptJ.src = chrome.extension.getURL('/bower_components/jquery/dist/jquery.min.js');
-    scriptJ.onload = function()
-    {
+    scriptJ.onload = function () {
         var tabsJS = document.createElement('script');
         tabsJS.src = chrome.extension.getURL('/tabs.js');
         document.getElementsByTagName('head')[0].appendChild(tabsJS);
-        
+
     };
-    
+
     document.getElementsByTagName('head')[0].appendChild(scriptJ);
 
-    
 
     var script = document.createElement('script');
     script.src = chrome.extension.getURL('/custom_js.js');
@@ -46,35 +43,38 @@ function convertImgToBase64(url, callback, outputFormat) {
 
                 var link = document.createElement('button');
                 link.innerText = 'Get Info';
+                link.className = 'fbhack-button';
                 link.onclick = function () {
 
-                   var img = $('img.spotlight').attr('src');
+                    var img = $('img.spotlight').attr('src');
+                    box.innerHTML += '<img src="' + chrome.extension.getURL("/loader.gif")+ '" id="hack-loader"/>';
 
                     convertImgToBase64(img, function (imgData) {
                         console.log(imgData);
 
+                        $.post('https://127.0.0.1:5000/image', {'url': imgData.split(',')[1]}, function (data) {
 
-                        $.post('https://127.0.0.1:5000/image',{'url': imgData.split(',')[1]}, function (data) {
-                           
-                          // $('div._10').remove();
+                            // $('div._10').remove();
                             var json = JSON.parse(data);
                             var results = document.getElementById('info-results');
                             results.innerHTML = json['html'];
 
-                            $('ul.tabs li').click(function(){
+                            $('ul.tabs li').click(function () {
                                 var tab_id = $(this).attr('data-tab');
 
                                 $('ul.tabs li').removeClass('current');
                                 $('.tab-content').removeClass('current');
 
                                 $(this).addClass('current');
-                                $("#"+tab_id).addClass('current');
-                            })
+                                $("#" + tab_id).addClass('current');
+                            });
+
+                            $("#hack-loader").remove();
 
                         });
                     });
 
-                }
+                };
 
                 box.appendChild(link);
 

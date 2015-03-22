@@ -23,13 +23,14 @@ ul.tabs li {
 }
 
 ul.tabs li.current {
-    background: #ededed;
+    background: rgb(233, 234, 237);
     color: #222;
 }
 
 .tab-content {
     display: none;
-    background: #ededed;
+    background: rgb(233, 234, 237);
+;
     padding: 15px;
 }
 
@@ -37,44 +38,36 @@ ul.tabs li.current {
     display: inherit;
 }
 
-.route-button {
-    -moz-box-shadow:inset 0 1px 0 0 #54a3f7;
-    -webkit-box-shadow:inset 0 1px 0 0 #54a3f7;
-    box-shadow:inset 0 1px 0 0 #54a3f7;
-    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #007dc1), color-stop(1, #0061a7));
-    background:-moz-linear-gradient(top, #007dc1 5%, #0061a7 100%);
-    background:-webkit-linear-gradient(top, #007dc1 5%, #0061a7 100%);
-    background:-o-linear-gradient(top, #007dc1 5%, #0061a7 100%);
-    background:-ms-linear-gradient(top, #007dc1 5%, #0061a7 100%);
-    background:linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#007dc1', endColorstr='#0061a7',GradientType=0);
-    background-color:#007dc1;
-    -moz-border-radius:3px;
-    -webkit-border-radius:3px;
-    border-radius:3px;
-    border:1px solid #124d77;
-    display:inline-block;
-    cursor:pointer;
-    color:#ffffff;
-    font-family: arial, serif;
-    font-size:13px;
-    padding:7px 15px;
-    text-decoration:none;
-    text-shadow:0 1px 0 #154682;
-    margin-left: 51px;
-}
-.route-button:hover {
-    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0061a7), color-stop(1, #007dc1));
-    background:-moz-linear-gradient(top, #0061a7 5%, #007dc1 100%);
-    background:-webkit-linear-gradient(top, #0061a7 5%, #007dc1 100%);
-    background:-o-linear-gradient(top, #0061a7 5%, #007dc1 100%);
-    background:-ms-linear-gradient(top, #0061a7 5%, #007dc1 100%);
-    background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0061a7', endColorstr='#007dc1',GradientType=0);
-    background-color:#0061a7;
-}
-.route-button:active {
-    position:relative;
-    top:1px;
+.fbhack-button,
+.fbhack-button:visited {
+    border-color: #29447e #29447e #1a356e;
+    color: #fff;
+    background-color: #5B74A8;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#637bad), to(#5872a7));
+    background-image: -moz-linear-gradient(#637bad, #5872a7);
+    background-image: -o-linear-gradient(#637bad, #5872a7);
+    background-image: linear-gradient(#637bad, #5872a7);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#637bad', EndColorStr='#5872a7'); /* for IE 6 - 9 */
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
+    -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;}
+
+.fbhack-button:hover,
+.fbhack-button:focus,
+.fbhack-button:active {
+    border-color: #29447E;
 }
 
+.fbhack-button:active {
+    border-color: #29447E;
+    background: #4F6AA3;
+    filter: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;}
+
+/* overrides extra padding on button elements in Firefox */
+.fbhack-button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
