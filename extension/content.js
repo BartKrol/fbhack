@@ -15,9 +15,33 @@ function convertImgToBase64(url, callback, outputFormat) {
     img.src = url;
 }
 
+function fixHistory(history){
+    var pushState = history.pushState;
+    history.pushState = function(state) {
+        if (typeof history.onpushstate == "function") {
+            history.onpushstate({state: state});
+        }
+        alert('heelo');
+        // maybe call onhashchange e.handler
+        return pushState.apply(history, arguments);
+    }
+}
+
+function getLocation(callback) {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(callback);
+    } else {
+       callback(null);
+    }
+}
 
 
 (function () {
+
+    getLocation(function(d){
+        console.log(d)
+        
+    });
 
     var scriptJ = document.createElement('script');
     scriptJ.src = chrome.extension.getURL('/bower_components/jquery/dist/jquery.min.js');
@@ -41,6 +65,9 @@ function convertImgToBase64(url, callback, outputFormat) {
         try {
 
             if (document.getElementById('info-data') == null) {
+                
+               
+                
                 var box = document.getElementById('fbPhotoSnowliftViews');
                 box.innerHTML += '<div id="info-data" style="background: rgb(228, 229,233); padding: 3px"><div><b>Info</b></div><div id="info-results"></div></div>';
 

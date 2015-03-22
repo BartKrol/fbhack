@@ -76,7 +76,7 @@ def get_image_response(token):
     #we are instereted in name
     
     if json_response['status'] == 'not completed':
-        time.sleep(5)
+        time.sleep(1)
         return get_image_response(token)
     
     return json_response
