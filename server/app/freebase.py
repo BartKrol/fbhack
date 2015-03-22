@@ -94,7 +94,7 @@ class Freebase:
             p = people.People(self.tags)
             return p.get_html(False)
         elif mod == "GEO":
-            return rome_rio.get_route(position, self.tags)
+            return rome_rio.get_rome_rio(position, self.tags)
         elif mod == "BUY":
             return amazon_search.get_amazon_items(self.tags, False)
 
