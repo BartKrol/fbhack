@@ -100,7 +100,7 @@ function getLocation(callback) {
                 link.onclick = function () {
 
                     var img = $('img.spotlight').attr('src');
-                    box.innerHTML += '<img src="' + chrome.extension.getURL("/loader.gif")+ '" id="hack-loader" style="padding-left: 80px"/>';
+                    box.innerHTML += '<img src="' + chrome.extension.getURL("/loader.gif")+ '" id="hack-loader" style="padding-left: 110px"/>';
                     $("button.get-info-button").fadeOut('slow');
                     convertImgToBase64(img, function (imgData) {
                         console.log(imgData);
