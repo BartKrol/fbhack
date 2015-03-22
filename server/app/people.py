@@ -42,7 +42,9 @@ class People:
         else:
             user = api.search_users(self.name)[0]
 
-        self.twitter = {"name": user.name, "tweets": user.timeline()[:5], "image": user.profile_image_url_https,
+        tweets = user.timeline()[:5]
+
+        self.twitter = {"name": user.name, "tweets": tweets, "image": user.profile_image_url_https,
                         "followers": user.followers_count, "sname": user.screen_name}
 
     def fb_img(self, query):
@@ -75,7 +77,16 @@ class People:
         if "about" in page:
             about = page["about"]
 
-        self.facebook = {"id": id, "name": page["name"], "about": about, "posts": posts["data"][:5], "picture": self.fb_img(id+"/picture?")}
+        posts = posts["data"][:5]
+        new_posts = []
+        for post in posts:
+            if "message" in post:
+                if len(post["message"]) > 150:
+                    post["message"] = post["message"][:150] + "..."
+                    print post["message"]
+            new_posts.append(post)
+
+        self.facebook = {"id": id, "name": page["name"], "about": about, "posts": new_posts, "picture": self.fb_img(id+"/picture?")}
 
     def get_html(self, preview):
         return render_template('people.html', facebook=self.facebook, twitter=self.twitter, preview=preview)
