@@ -34,13 +34,13 @@
 
 
             <form action="{{ route.segments[0].itineraries[0].legs[0].url }}" target="_blank">
-                <button class="fbhack-button">Book Journey</button>
+                <button class="fbhack-button route-button">Book Journey</button>
             </form>
         </div>
     {% endfor %}
 
     <div id="tab-{{ routes|length + 1}}" class="tab-content">
-        <iframe width="250" height="200" frameborder="0" style="border:0"
+        <iframe width="400" height="400" frameborder="0" style="border:0" scrolling="no"
                 src="https://www.google.com/maps/embed/v1/directions?origin={{ places[0].pos }}&destination={{ places[1].pos }}&key={{ api }}"></iframe>
 
     </div>

@@ -4,7 +4,7 @@
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     border: 2px solid #000000;
-    max-width: 250px;
+    max-width: 500px;
     overflow: hidden;
 }
 
@@ -52,7 +52,12 @@ ul.tabs li.current {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#637bad', EndColorStr='#5872a7'); /* for IE 6 - 9 */
     -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
     -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;}
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
+}
+
+.route-button {
+    margin-left: 80px;
+}
 
 .fbhack-button:hover,
 .fbhack-button:focus,
