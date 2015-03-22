@@ -110,7 +110,7 @@ function getLocation(callback) {
 
             var entityButton = document.createElement('button');
 
-            entityButton.innerText = 'Get Info';
+            entityButton.innerText = 'Tell me more™';
             entityButton.className = 'fbhack-button get-info-button';
             entityButton.id = "g" + i.toString();
             entityButton.onclick = function (event) {
@@ -142,7 +142,7 @@ function getLocation(callback) {
                     box.innerHTML += '<div id="info-data"><div id="info-results"></div></div>';
 
                     var link = document.createElement('button');
-                    link.innerText = 'Get Info';
+                    link.innerText = 'Tell Me More™';
                     link.className = 'fbhack-button get-info-button';
                     link.onclick = function () {
 
