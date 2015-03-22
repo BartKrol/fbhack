@@ -58,6 +58,7 @@
     "bower_components/jquery/dist/jquery.min.map",
     "tabs.js",
     "custom_js.js",
-    "loader.gif"
+    "loader.gif",
+    "loader2.gif"
   ]
 }
