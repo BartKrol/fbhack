@@ -55,7 +55,7 @@ function getLocation(callback) {
             
             $(this).wrap('<div id="active-info-image"></div>');
             
-            $('#active-info-image').append('<div class="info-image-overlay"><div><h1>Click for info!</h1></div></div>');
+            $('#active-info-image').append('<div class="info-image-overlay"><h1>Tell me more™</h1></div>');
             
             $('div.info-image-overlay').click(function(event){
                 event.preventDefault();

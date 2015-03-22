@@ -27,6 +27,7 @@
     -ms-animation: fadein 2s; /* Internet Explorer */
     -o-animation: fadein 2s; /* Opera < 12.1 */
     animation: fadein 2s;
+    cursor: pointer;
 }
 
 #active-info-image{
@@ -49,4 +50,10 @@
     margin-top: -200px;
     margin-left: -300px;
     overflow-y: scroll;
+}
+
+.info-image-overlay h1{
+    text-align: center;
+    vertical-align: middle;
+    
 }
