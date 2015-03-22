@@ -1,6 +1,9 @@
-#info-results
-{
-    max-height:200px;
+#info-results {
+    max-height: 200px;
     overflow-y: scroll;
 
+}
+
+.hack-loader {
+    padding-left: 50px;
 }

@@ -11,6 +11,8 @@
             <li class="tab-link {% if loop.first %}current {% endif %}" data-tab="tab-{{ loop.index }}">
                 Route {{ loop.index }}</li>
         {% endfor %}
+
+        <li class="tab-link" data-tab="tab-{{ routes|length + 1}}">Map</li>
     </ul>
 
     {% for route in routes %}
@@ -25,17 +27,23 @@
                 {% endif %}
             {% endfor %}
 
+
             <p><strong>Price</strong>: {{ route.indicativePrice.price }}{{ route.indicativePrice.currency }} </p>
 
             <p><strong>Duration</strong>: {{ route.duration }} </p>
 
 
-{#            <a href="{{ route.segments[0].itineraries[0].legs[0].url }}" class="fbhack-button" target="_blank">Book Journey</a>#}
             <form action="{{ route.segments[0].itineraries[0].legs[0].url }}" target="_blank">
                 <button class="fbhack-button">Book Journey</button>
             </form>
         </div>
     {% endfor %}
+
+    <div id="tab-{{ routes|length + 1}}" class="tab-content">
+        <iframe width="250" height="200" frameborder="0" style="border:0"
+                src="https://www.google.com/maps/embed/v1/directions?origin={{ places[0].pos }}&destination={{ places[1].pos }}&key={{ api }}"></iframe>
+
+    </div>
 
 </div>
 
