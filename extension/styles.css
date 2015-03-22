@@ -60,7 +60,7 @@ img.amazon {
     box-sizing: border-box;
     color: rgb(148, 148, 148);
     padding-bottom: 10px;
-    overflow-wrap: break-word;
+    overflow: hidden;
     text-align: left;
     width: 233.796875px;
     word-wrap: break-word;

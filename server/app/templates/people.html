@@ -19,14 +19,22 @@
 </ul>
 
 <div id="tab-1" class="tab-content current">
-    <img src="{{ twitter[" image"] }}" alt="Twitter Account">
-    <a href="http://twitter.com/{{ twitter[" sname"] }}">{{ twitter["name"] }} (@{{ twitter["sname"] }})</a>
-    <div id="followers">
+    <div class="center-info">
+    <img class="circular-img" src="{{ twitter['image'] }}" alt="Twitter Account">
+        </div>
+    <a class="name-info" href="http://twitter.com/{{ twitter['sname'] }}"><h3>{{ twitter["name"] }} (@{{ twitter["sname"] }})</h3></a>
+    <div class="about-info"><i>
         Followers: {{ twitter["followers"] }}
+        </i>
     </div>
+    
+    <hr/>
+    
     {% for tweet in twitter["tweets"] %}
-    <div class="tweet">
+    <div class="post">
+        <div class="post_text">
         {{ tweet.text }}
+            </div>
         <div class="tweet_ca">{{tweet.created_at}}</div>
     </div>
     {% endfor %}
@@ -35,8 +43,8 @@
     <div class="center-info">
         <img class="circular-img" src="{{ facebook['picture'] }}" alt="Profile Picture">
     </div>
-    <a id="fb-name-info" target="_blank" href="http://facebook.com/{{ facebook['id'] }}"><h3>{{ facebook["name"] }}</h3></a>
-    <div id="about"><i>{{ facebook["about"] }}</i></div>
+    <a class="name-info" target="_blank" href="http://facebook.com/{{ facebook['id'] }}"><h3>{{ facebook["name"] }}</h3></a>
+    <div class="info-about"><i>{{ facebook["about"] }}</i></div>
     <hr/>
     {% for post in facebook["posts"] %}
     <div class="post">
