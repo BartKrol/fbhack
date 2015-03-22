@@ -3,15 +3,35 @@
 {% endif %}
 
 {% for product in products %}
-    <div class="amazon-item">
-        <div class="amazon-title">
-            <a href="{{ product.offer_url }}" target="_blank">{{ product.title }}</a>
-        </div>
-        <div class="amazon-image">
-            <img src="{{ product.medium_image_url }}" class="amazon"/>
-        </div>
-        <div class="amazon-content">
-            {{ '%0.2f' % product.list_price[0]|float }}$
+
+<div id="DIV_1">
+    <div id="DIV_2">
+        <div id="DIV_3">
+            <a href="{{ product.offer_url }}" target="_blank"
+               id="A_4"><img alt="Product Details" src="{{ product.medium_image_url }}"
+                             id="IMG_5"/></a>
+
+            <div id="DIV_6">
+            </div>
         </div>
     </div>
+    <div id="DIV_7">
+        <div id="DIV_8">
+            <a title="Apple MacBook Air MD760LL/B 13.3-Inch Laptop (OLD VERSION)"
+               href="{{ product.offer_url }}" target="_blank"
+               id="A_9">
+
+            <h2 id="H2_10">
+                Apple MacBook Air MD760LL/B 13.3-Inch Laptop (OLD VERSION)
+            </h2>
+            </a>
+        </div>
+        <div id="DIV_11">
+            <a href="{{ product.offer_url }}" target="_blank"
+               id="A_12"><span id="SPAN_13">£{{ '%0.2f' % product.list_price[0]|float }}</span></a><i id="I_15"></i>
+        </div>
+
+    </div>
+</div>
+
 {% endfor %}

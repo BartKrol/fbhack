@@ -1,7 +1,7 @@
 from amazon.api import AmazonAPI
 from flask import render_template
 
-amazon = AmazonAPI('***REMOVED***', '***REMOVED***', '***REMOVED***')
+amazon = AmazonAPI('***REMOVED***', '***REMOVED***', '***REMOVED***', region='UK')
 
 
 def search_for(text, top=3):
