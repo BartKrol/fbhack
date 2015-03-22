@@ -6,8 +6,9 @@ from flask import render_template
 import unirest
 
 class People:
-    def __init__(self, name):
+    def __init__(self, name, description):
         self.name = name
+        self.wikipedia = description
 
         self.facebook_token = "***REMOVED***"
         self.facebook_api = "https://graph.facebook.com/v2.2/"
@@ -19,8 +20,36 @@ class People:
         self.p_twitter()
         self.p_facebook_page()
 
-    def p_twitter(self):
+    def p_wikipedia(self):
+        self.p_wikipedia_(self.name)
 
+    def p_wikipedia_(self, link):
+
+        wiki_maps = {"queen elizabeth": "Elizabeth II"}
+
+        if link in wiki_maps:
+            link = wiki_maps[link]
+        api = "http://en.wikipedia.org/w/api.php?format=json&action=query&titles="+urllib.quote_plus(link)+"&prop=revisions&rvprop=content&continue="
+        response = urllib2.urlopen(api)
+        html = response.read()
+        message = json.loads(html)
+        self.wikipedia = message["query"]["pages"]
+        print message
+
+        if "normalized" in message["query"]:
+            self.p_wikipedia_(message["query"]["normalized"][0]["to"])
+        else:
+            pass
+
+      #  for key in self.wikipedia.keys():
+      #      if "revisions" in self.wikipedia[key]:
+      #          if self.wikipedia[key]["revisions"][0]["*"].startswith("#REDIRECT"):
+      #              tokens = self.wikipedia[key]["revisions"][0]["*"]
+      #              tokens = tokens.split("[[")
+      #              tokens = tokens[1].split("]]")
+      #              self.p_wikipedia_(tokens[0])
+
+    def p_twitter(self):
         twitter_mappings = {"queen elizabeth": "BritishMonarchy"}
 
         api_key = "***REMOVED***"
@@ -89,4 +118,4 @@ class People:
         self.facebook = {"id": id, "name": page["name"], "about": about, "posts": new_posts, "picture": self.fb_img(id+"/picture?")}
 
     def get_html(self, preview):
-        return render_template('people.html', facebook=self.facebook, twitter=self.twitter, preview=preview)
+        return render_template('people.html', facebook=self.facebook, twitter=self.twitter, preview=preview, wikipedia=self.wikipedia)

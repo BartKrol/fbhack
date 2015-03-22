@@ -39,12 +39,14 @@ class Freebase:
         response = urllib2.urlopen(url)
         html = response.read()
         article = json.loads(html)
+        mid = ""
         for result in article["result"]:
             self.name = result["name"]
-            if result.has_key("notable"):
-                if result.has_key("name"):
+            print result
+            if "notable" in result:
+                if "name" in result:
                     self.category = result["notable"]["name"]
-
+                    mid = result["mid"]
             if self.category != "":
                 break
 
@@ -55,7 +57,7 @@ class Freebase:
                 if result["notable"].has_key("name"):
                     self.categories.append(result["notable"]["name"])
 
-        mid = result["mid"]
+        print self.categories
 
         service_url = 'https://www.googleapis.com/freebase/v1/topic'
 
@@ -67,7 +69,7 @@ class Freebase:
         url = service_url + mid + '?' + urllib.urlencode(params)
         topic = json.loads(urllib.urlopen(url).read())
         try:
-            self.description = topic["property"]["/common/topic/article"]["values"][0]["property"]["/common/document/text"]["values"][0]["value"]
+            self.description = topic["property"]["/common/topic/article"]["values"][0]["property"]["/common/document/text"]["values"][0]["value"] +"..."
         except KeyError:
             self.description = ""
 
@@ -98,7 +100,7 @@ class Freebase:
     def get_html(self, position):
         mod = self.get_module()
         if mod == "PER":
-            p = people.People(self.tags)
+            p = people.People(self.tags, self.description)
             return p.get_html(False)
         elif mod == "GEO":
             return rome_rio.get_rome_rio(position, self.tags)
