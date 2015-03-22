@@ -141,7 +141,7 @@ function getLocation(callback) {
                     box.innerHTML += '<div id="info-data"><div id="info-results"></div></div>';
 
                     var link = document.createElement('button');
-                    link.innerText = 'Get Info';
+                    link.innerText = 'Tell Me More™';
                     link.className = 'fbhack-button get-info-button';
                     link.onclick = function () {
 
