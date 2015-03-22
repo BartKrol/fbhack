@@ -5,8 +5,11 @@
 <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='tabs.css') }}">
 {% endif %}
 
-<h3>{{film["Title"]}}</h3>
+<h3><a href="http://www.imdb.com/title/{{film["imdbID"]}}/">{{film["Title"]}}</a></h3>
 {{ film["Plot"]}}
 
-<div>Duration time: {{film["Runtime"] }}</div>
+<table>
+    <tr><th>Duration time</th><td>{{film["Runtime"] }}</td></tr>
+    <tr><th>Score</th><td>{{film["imdbRating"] }}</td></tr>
+</table>
 <div>{{film["description"]}}</div>
