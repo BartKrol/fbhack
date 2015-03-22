@@ -33,9 +33,9 @@
             <p><strong>Duration</strong>: {{ route.duration }} </p>
 
 
-            <form action="{{ route.segments[0].itineraries[0].legs[0].url }}" target="_blank">
-                <button class="fbhack-button route-button">Book Journey</button>
-            </form>
+            <a class="fbhack-button route-button" href="{{ route.segments[0].itineraries[0].legs[0].url }}" target="_blank">
+                Book Journey
+            </a>
         </div>
     {% endfor %}
 

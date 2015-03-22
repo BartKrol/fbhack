@@ -133,8 +133,18 @@ function getLocation(callback) {
 
                 $.getJSON('https://127.0.0.1:5000/entity?text=' + encodeURI(text), function (data) {
                     console.log(data);
-                    if (data['status'] !== 'error')
-                        document.getElementsByClassName('_5vsi')[j].innerHTML += '<div id="info-results">'+data['html']+'</div>';
+                    if (data['status'] !== 'error') {
+                        document.getElementsByClassName('_5vsi')[j].innerHTML += '<div id="info-results">' + data['html'] + '</div>';
+                        $('ul.tabs li').click(function () {
+                            var tab_id = $(this).attr('data-tab');
+
+                            $('ul.tabs li').removeClass('current');
+                            $('.tab-content').removeClass('current');
+
+                            $(this).addClass('current');
+                            $("#" + tab_id).addClass('current');
+                        });
+                    }
                 });
 
             };
