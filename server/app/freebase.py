@@ -20,10 +20,10 @@ class Freebase:
                    'white',
                    'yellow']
         
-        tags = tags.split(" ")
+        tags = tags.lower().split(" ")
         f_tags = []
         for t in tags:
-            if t.lower() not in colours:
+            if t not in colours:
                 f_tags.append(t)
         
         self.tags = " ".join(f_tags[:2])
@@ -81,7 +81,8 @@ class Freebase:
                     "Noble person": "PER",
                     "Mountain": "GEO",
                     "Actor": "PER",
-                    "Hard rock Artist": "PER"}
+                    "Hard rock Artist": "PER",
+                    "Castle": "GEO"}
         if self.category in bindings.keys():
             return bindings[self.category]
         else:
@@ -93,7 +94,7 @@ class Freebase:
             p = people.People(self.tags)
             return p.get_html(False)
         elif mod == "GEO":
-            return rome_rio.get_route(position, self.tags)
+            return rome_rio.get_rome_rio(position, self.tags)
         elif mod == "BUY":
             return amazon_search.get_amazon_items(self.tags, False)
 
