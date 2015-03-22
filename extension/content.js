@@ -184,6 +184,9 @@ function getLocation(callback) {
 
                                 $("#hack-loader").remove();
 
+                                $('.tweet').each(function (index, tweet) {
+                                    $(tweet).html($.parseHTML(urlify($(tweet).text()))).text();
+                                });
 
                             });
                         });
