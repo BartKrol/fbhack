@@ -58,6 +58,7 @@ function getLocation(callback) {
             
             $('div.info-image-overlay').click(function(event){
                 event.preventDefault();
+                $('div.info-image-overlay').append('<img src="' + chrome.extension.getURL("/loader2.gif") + '" id="hack-loader2" style="padding-left: 220px; padding-top: 130px;"></img>');
                 convertImgToBase64($('#active-info-image img').attr('src'), function (imgData) {
                     console.log(imgData);
 
@@ -78,7 +79,7 @@ function getLocation(callback) {
                             $("#" + tab_id).addClass('current');
                         });
 
-                        $("#hack-loader").remove();
+                        $("#hack-loader2").remove();
 
 
                     });

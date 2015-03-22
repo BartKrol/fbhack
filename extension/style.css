@@ -26,10 +26,13 @@
 #info-modal{
     height: 400px;
     width: 600px;
-    top:200px;
-    left:300px;
+    top:50%;
+    left:50%;
     position: fixed;
     z-index: 99999999999;
     background: #ffffff;
     border: 1px solid #000000;
+    margin-top: -200px;
+    margin-left: -300px;
+    overflow-y: scroll;
 }
