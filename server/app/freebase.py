@@ -39,9 +39,16 @@ class Freebase:
         response = urllib2.urlopen(url)
         html = response.read()
         article = json.loads(html)
-        result = article["result"][0]
-        self.name = result["name"]
-        self.category = result["notable"]["name"]
+        for result in article["result"]:
+            self.name = result["name"]
+            if result.has_key("notable"):
+                if result.has_key("name"):
+                    self.category = result["notable"]["name"]
+
+            if self.category != "":
+                break
+
+        print self.category
 
         for result in article["result"]:
             if "notable" in result:
