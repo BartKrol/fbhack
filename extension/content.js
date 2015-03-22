@@ -74,7 +74,7 @@ function getLocation(callback) {
 
                         var json = JSON.parse(data);
                         console.log(json);
-                        $('body').parent().append('<div id="info-modal"><a href="javascript:0" class="close">close</a>'+json['html']+'</div>');
+                        $('body').parent().append('<div id="info-modal"><a href="javascript:0" class="close">&#10006;</a>'+json['html']+'</div>');
                         $('a.close').click(function(){
                             $('#info-modal').remove();
                             
@@ -91,7 +91,7 @@ function getLocation(callback) {
 
                         $("#hack-loader2").remove();
 
-                        $('.tweet').each(function (index, tweet) {
+                        $('.post_text').each(function (index, tweet) {
                             $(tweet).html($.parseHTML(urlify($(tweet).text()))).text();
                         });
 
@@ -194,7 +194,7 @@ function getLocation(callback) {
 
                                 $("#hack-loader").remove();
 
-                                $('.tweet').each(function (index, tweet) {
+                                $('.post_text').each(function (index, tweet) {
                                     $(tweet).html($.parseHTML(urlify($(tweet).text()))).text();
                                 });
 

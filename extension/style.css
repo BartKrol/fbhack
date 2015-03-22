@@ -40,9 +40,6 @@ div._10{
     
 }
 
-
-
-
 #info-modal{
     height: 400px;
     width: 600px;
@@ -50,17 +47,25 @@ div._10{
     left:50%;
     position: fixed;
     z-index: 99999999999;
-    background: #ffffff;
-    border: 1px solid #000000;
+    background: rgb(233, 234, 237);
+    border: 2px solid #000000;
     margin-top: -200px;
     margin-left: -300px;
     overflow-y: scroll;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -webkit-box-shadow: 11px 15px 20px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 11px 15px 20px 0px rgba(0,0,0,0.75);
+    box-shadow: 11px 15px 20px 0px rgba(0,0,0,0.75);
 }
 
-#info-modal.close{
-
-    
-    
+#info-modal a.close{
+    float: right;
+    font-weight: bolder;
+    font-size: large;
+    margin-right: 7px;
+    margin-top: 5px;
 }
 
 .info-image-overlay h1{
