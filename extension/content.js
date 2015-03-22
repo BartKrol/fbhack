@@ -74,8 +74,11 @@ function getLocation(callback) {
                         // $('div._10').remove();
                         var json = JSON.parse(data);
                         console.log(json);
-                        $('body').parent().append('<div id="info-modal">'+json['html']+'</div>');
-
+                        $('body').parent().append('<div id="info-modal"><a href="javascript:0" class="close">close</a>'+json['html']+'</div>');
+                        $('a.close').click(function(){
+                            $('#info-modal').remove();
+                            
+                        });
                         $('ul.tabs li').click(function () {
                             var tab_id = $(this).attr('data-tab');
 
