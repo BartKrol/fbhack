@@ -4,6 +4,7 @@ import json
 import people
 import amazon_search
 import rome_rio
+import film
 
 class Freebase:
     def __init__(self,tags):
@@ -18,7 +19,9 @@ class Freebase:
                    'purple',
                    'red',
                    'white',
-                   'yellow']
+                   'yellow',
+                   'the',
+                   'a']
         
         tags = tags.lower().split(" ")
         f_tags = []
@@ -94,6 +97,8 @@ class Freebase:
                     "Castle": "GEO"}
         if self.category in bindings.keys():
             return bindings[self.category]
+        elif "Film" in self.category:
+            return "MOV"
         else:
             return "BUY"
 
@@ -106,6 +111,10 @@ class Freebase:
             return rome_rio.get_rome_rio(position, self.tags)
         elif mod == "BUY":
             return amazon_search.get_amazon_items(self.tags, False)
+        elif mod == "MOV":
+            f = film.Film(self.tags, self.description)
+            f.get_info()
+            return f.get_html(False)
 
 
 
