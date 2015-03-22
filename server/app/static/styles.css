@@ -4,6 +4,7 @@
 }
 
 .amazon-item {
+    background: rgb(233, 234, 237);
     border-radius: 4px;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
@@ -21,4 +22,8 @@
 
 .amazon-image {
     padding-left: 20px;
+}
+
+img.amazon {
+    border: 1px solid #000000;
 }

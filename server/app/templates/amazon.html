@@ -8,10 +8,10 @@
             <a href="{{ product.offer_url }}" target="_blank">{{ product.title }}</a>
         </div>
         <div class="amazon-image">
-            <img src="{{ product.medium_image_url }}"/>
+            <img src="{{ product.medium_image_url }}" class="amazon"/>
         </div>
         <div class="amazon-content">
-            {{ product.list_price[0] }}{{ product.list_price[1] }}
+            {{ product.list_price[0] }}$
         </div>
     </div>
 {% endfor %}
