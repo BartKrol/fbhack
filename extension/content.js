@@ -74,7 +74,7 @@ function getLocation(callback) {
                         // $('div._10').remove();
                         var json = JSON.parse(data);
                         console.log(json);
-                        $('body').parent().append('<div id="info-modal"><a href="javascript:0" class="close">close</a>'+json['html']+'</div>');
+                        $('body').parent().append('<div id="info-modal"><a href="javascript:0" class="close">&#10006;</a>'+json['html']+'</div>');
                         $('a.close').click(function(){
                             $('#info-modal').remove();
                             
