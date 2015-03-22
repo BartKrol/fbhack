@@ -1,6 +1,5 @@
-#info-results
-{
-    max-height:200px;
+#info-results {
+    max-height: 200px;
     overflow-y: scroll;
 
 }

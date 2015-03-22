@@ -4,6 +4,8 @@ import unirest
 api_url = 'https://rome2rio12.p.mashape.com/Search'
 api_key = "***REMOVED***"
 
+google_api = '***REMOVED***'
+
 
 def get_route(from_name, to_name):
     response = unirest.get(api_url + "?currency=GBP&dName=" + to_name + "&oName=" + from_name,
@@ -30,7 +32,11 @@ def duration_hours(value):
 
 
 def get_rome_rio(from_name, to_name, preview=False):
-    routes = get_route(from_name, to_name)['routes']
+
+    data = get_route(from_name, to_name)
+    places = data['places']
+
+    routes = data['routes']
 
     routes = sorted(routes, key=lambda route: int(route['duration']))
 
@@ -39,4 +45,4 @@ def get_rome_rio(from_name, to_name, preview=False):
     for route in routes:
         route['duration'] = duration_hours(int(route['duration']))
 
-    return render_template('route.html', routes=routes, preview=preview, duration_hours=duration_hours)
+    return render_template('route.html', routes=routes, preview=preview, places=places, api=google_api)
