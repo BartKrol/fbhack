@@ -11,6 +11,7 @@ def search_for(text, top=3):
 
     for product in products:
         if product.title is not None and product.price_and_currency is not None:
+            
             top_products.append(product)
             top -= 1
             if top == 0:

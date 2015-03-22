@@ -46,6 +46,41 @@ function getLocation(callback) {
     document.getElementsByTagName('head')[0].appendChild(scriptJ);
 
 
+    //$('div._5pcp').append('<label class="uiLinkButton comment_link" title="Get Info" id="get-info-label"></label>');
+
+    //var label = document.getElementById('get-info-label');
+    //label.appendChild(entityButton);
+
+    var posts = document.getElementsByClassName('_5vsi');
+
+
+    for(var i =0; i< posts.length; i++) {
+
+
+        var entityButton = document.createElement('button');
+
+        entityButton.innerText = 'Get Info';
+        entityButton.className = 'fbhack-button get-info-button';
+        entityButton.id = "g"+ i.toString();
+        entityButton.onclick = function (event) {
+
+            var j = parseInt(event.target.id.substring(1));
+            console.log(event.target.id);
+            var text = $('div.userContent')[j].innerText;
+
+            $.getJSON('https://127.0.0.1:5000/entity?text='+encodeURI(text), function(data){
+                console.log(data);
+                if(data['status'] !== 'error')
+                    document.getElementsByClassName('_5vsi')[j].innerHTML += data['html'];
+            });
+
+        };
+
+        posts[i].appendChild(entityButton);
+    }
+
+
+
 
 
     setInterval(function () {

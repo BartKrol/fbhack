@@ -42,14 +42,19 @@ def entity():
         
         #TODO: Think how to do this best
         
+        
+        
         for entity in entities['entities'][:1]:
             freebase = Freebase(entity['text'])
             html = freebase.get_html('london')
 
             response = {'status': 'ok', 'html': html}
-            
+            return json.dumps(response)
+        
+        
+        return json.dumps({'status': 'error'})
             
 
-        return json.dumps(response)
+
         
     
