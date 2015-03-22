@@ -36,7 +36,8 @@
     "activeTab",
     "http://127.0.0.1/",
     "https://127.0.0.1/",
-    "https://ajax.googleapis.com/"
+    "https://ajax.googleapis.com/",
+    "tabs"
   ],
   "browser_action": {
     "default_title": "Make this page red"
