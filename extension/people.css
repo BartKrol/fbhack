@@ -18,7 +18,9 @@ color: black;
 }
 #about {
     font-size: 14px;
+
     padding: 4px;
+    text-align: center;
 }
 .tweet_ca {
    width: 100%;
@@ -27,10 +29,13 @@ color: black;
    font-size: 10px;
 }
 .post {
-    padding: 5px;
+    padding: 10px;
+    border-bottom: 1px solid #cccccc;
 }
 .post img {
 width: 30%;
+    border: 1px solid #cccccc;
+
 }
 .post_text {
     display: inline-block;
@@ -38,4 +43,23 @@ width: 30%;
     font-size: 18px;
     width: 60%;
     vertical-align: top;
+}
+
+img.circular-img{
+    border-radius: 100px;
+    border: 1px solid #cccccc;
+    margin-left: 50%;
+    
+}
+
+.center-info{
+    
+    display: block;
+    margin-left: -102px;
+    
+}
+
+#fb-name-info{
+    text-align: center  ;
+    
 }
