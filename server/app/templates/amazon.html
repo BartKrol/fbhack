@@ -11,7 +11,7 @@
             <img src="{{ product.medium_image_url }}" class="amazon"/>
         </div>
         <div class="amazon-content">
-            {{ product.list_price[0] }}$
+            {{ '%0.2f' % product.list_price[0]|float }}$
         </div>
     </div>
 {% endfor %}
