@@ -16,20 +16,19 @@ function convertImgToBase64(url, callback, outputFormat) {
 }
 
 
-
 function getLocation(callback) {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(callback);
     } else {
-       callback(null);
+        callback(null);
     }
 }
 
 (function () {
 
-    getLocation(function(d){
+    getLocation(function (d) {
         console.log(d)
-        
+
     });
 
     var scriptJ = document.createElement('script');
@@ -46,99 +45,104 @@ function getLocation(callback) {
     document.getElementsByTagName('head')[0].appendChild(scriptJ);
 
 
-    //$('div._5pcp').append('<label class="uiLinkButton comment_link" title="Get Info" id="get-info-label"></label>');
+    if (window.location.indexOf('facebook') == -1) {
 
-    //var label = document.getElementById('get-info-label');
-    //label.appendChild(entityButton);
-
-    var posts = document.getElementsByClassName('_5vsi');
+        //HOVER
 
 
-    for(var i =0; i< posts.length; i++) {
+    }
+    else {
+        //FACEBOOK SPECIFIC
+
+        var posts = document.getElementsByClassName('_5vsi');
 
 
-        var entityButton = document.createElement('button');
+        for (var i = 0; i < posts.length; i++) {
 
-        entityButton.innerText = 'Get Info';
-        entityButton.className = 'fbhack-button get-info-button';
-        entityButton.id = "g"+ i.toString();
-        entityButton.onclick = function (event) {
 
-            var j = parseInt(event.target.id.substring(1));
-            console.log(event.target.id);
-            var text = $('div.userContent')[j].innerText;
+            var entityButton = document.createElement('button');
 
-            $.getJSON('https://127.0.0.1:5000/entity?text='+encodeURI(text), function(data){
-                console.log(data);
-                if(data['status'] !== 'error')
-                    document.getElementsByClassName('_5vsi')[j].innerHTML += data['html'];
-            });
+            entityButton.innerText = 'Get Info';
+            entityButton.className = 'fbhack-button get-info-button';
+            entityButton.id = "g" + i.toString();
+            entityButton.onclick = function (event) {
 
-        };
+                var j = parseInt(event.target.id.substring(1));
+                console.log(event.target.id);
+                var text = $('div.userContent')[j].innerText;
 
-        posts[i].appendChild(entityButton);
+                $.getJSON('https://127.0.0.1:5000/entity?text=' + encodeURI(text), function (data) {
+                    console.log(data);
+                    if (data['status'] !== 'error')
+                        document.getElementsByClassName('_5vsi')[j].innerHTML += data['html'];
+                });
+
+            };
+
+            posts[i].appendChild(entityButton);
+        }
+
+
+        setInterval(function () {
+
+            try {
+
+                if (document.getElementById('info-data') == null) {
+
+
+                    var box = document.getElementById('fbPhotoSnowliftViews');
+                    box.innerHTML += '<div id="info-data"><div id="info-results"></div></div>';
+
+                    var link = document.createElement('button');
+                    link.innerText = 'Get Info';
+                    link.className = 'fbhack-button get-info-button';
+                    link.onclick = function () {
+
+                        var img = $('img.spotlight').attr('src');
+                        box.innerHTML += '<img src="' + chrome.extension.getURL("/loader.gif") + '" id="hack-loader" style="padding-left: 110px"/>';
+                        $("button.get-info-button").fadeOut('slow');
+                        convertImgToBase64(img, function (imgData) {
+                            console.log(imgData);
+
+                            $.post('https://127.0.0.1:5000/image', {'url': imgData.split(',')[1]}, function (data) {
+
+                                // $('div._10').remove();
+                                var json = JSON.parse(data);
+                                console.log(json);
+                                var results = document.getElementById('info-results');
+                                results.innerHTML = json['html'];
+
+                                $('ul.tabs li').click(function () {
+                                    var tab_id = $(this).attr('data-tab');
+
+                                    $('ul.tabs li').removeClass('current');
+                                    $('.tab-content').removeClass('current');
+
+                                    $(this).addClass('current');
+                                    $("#" + tab_id).addClass('current');
+                                });
+
+                                $("#hack-loader").remove();
+
+
+                            });
+                        });
+
+                    };
+
+                    box.appendChild(link);
+
+                }
+            }
+            catch (e) {
+                //console.log(e);
+
+            }
+        }, 1000);
+
+
     }
 
 
-
-
-
-    setInterval(function () {
-        
-        try {
-
-            if (document.getElementById('info-data') == null) {
-                
-               
-                
-                var box = document.getElementById('fbPhotoSnowliftViews');
-                box.innerHTML += '<div id="info-data"><div id="info-results"></div></div>';
-
-                var link = document.createElement('button');
-                link.innerText = 'Get Info';
-                link.className = 'fbhack-button get-info-button';
-                link.onclick = function () {
-
-                    var img = $('img.spotlight').attr('src');
-                    box.innerHTML += '<img src="' + chrome.extension.getURL("/loader.gif")+ '" id="hack-loader" style="padding-left: 110px"/>';
-                    $("button.get-info-button").fadeOut('slow');
-                    convertImgToBase64(img, function (imgData) {
-                        console.log(imgData);
-
-                        $.post('https://127.0.0.1:5000/image', {'url': imgData.split(',')[1]}, function (data) {
-
-                            // $('div._10').remove();
-                            var json = JSON.parse(data);
-                            console.log(json);
-                            var results = document.getElementById('info-results');
-                            results.innerHTML = json['html'];
-
-                            $('ul.tabs li').click(function () {
-                                var tab_id = $(this).attr('data-tab');
-
-                                $('ul.tabs li').removeClass('current');
-                                $('.tab-content').removeClass('current');
-
-                                $(this).addClass('current');
-                                $("#" + tab_id).addClass('current');
-                            });
-
-                            $("#hack-loader").remove();
-
-
-                        });
-                    });
-
-                };
-
-                box.appendChild(link);
-
-            }
-        }
-        catch (e) {
-            //console.log(e);
-
-        }
-    }, 1000);
 })();
 
