@@ -71,7 +71,7 @@ function getLocation(callback) {
 
                     $.post('https://127.0.0.1:5000/image', {'url': imgData.split(',')[1]}, function (data) {
 
-                        // $('div._10').remove();
+
                         var json = JSON.parse(data);
                         console.log(json);
                         $('body').parent().append('<div id="info-modal"><a href="javascript:0" class="close">close</a>'+json['html']+'</div>');
@@ -134,7 +134,7 @@ function getLocation(callback) {
                 $.getJSON('https://127.0.0.1:5000/entity?text=' + encodeURI(text), function (data) {
                     console.log(data);
                     if (data['status'] !== 'error')
-                        document.getElementsByClassName('_5vsi')[j].innerHTML += data['html'];
+                        document.getElementsByClassName('_5vsi')[j].innerHTML += '<div id="info-results">'+data['html']+'</div>';
                 });
 
             };
@@ -146,7 +146,7 @@ function getLocation(callback) {
         setInterval(function () {
 
             try {
-
+                $('div._10').remove();
                 if (document.getElementById('info-data') == null) {
 
 
