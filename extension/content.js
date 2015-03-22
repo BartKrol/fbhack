@@ -47,6 +47,7 @@ function getLocation(callback) {
 
     if (window.location.href.toString().indexOf('facebook') == -1) {
 
+        
         //HOVER
         $('img').hover(function(){
            
