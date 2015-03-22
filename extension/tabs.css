@@ -38,6 +38,8 @@ ul.tabs li.current {
     display: inherit;
 }
 
+
+
 .fbhack-button,
 .fbhack-button:visited {
     border-color: #29447e #29447e #1a356e;
@@ -70,4 +72,12 @@ ul.tabs li.current {
 .fbhack-button::-moz-focus-inner {
     padding: 0;
     border: 0;
+}
+
+.get-info-button
+{
+    width: 100%;
+    padding: 10px 0px ;
+    font-size: 18px;
+    
 }

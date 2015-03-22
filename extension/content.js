@@ -57,16 +57,16 @@ function getLocation(callback) {
                
                 
                 var box = document.getElementById('fbPhotoSnowliftViews');
-                box.innerHTML += '<div id="info-data" style="background: rgb(228, 229,233); padding: 3px"><div><b>Info</b></div><div id="info-results"></div></div>';
+                box.innerHTML += '<div id="info-data"><div id="info-results"></div></div>';
 
                 var link = document.createElement('button');
                 link.innerText = 'Get Info';
-                link.className = 'fbhack-button';
+                link.className = 'fbhack-button get-info-button';
                 link.onclick = function () {
 
                     var img = $('img.spotlight').attr('src');
                     box.innerHTML += '<img src="' + chrome.extension.getURL("/loader.gif")+ '" id="hack-loader"/>';
-
+                    $("button.get-info-button").fadeOut('slow');
                     convertImgToBase64(img, function (imgData) {
                         console.log(imgData);
 
@@ -89,6 +89,7 @@ function getLocation(callback) {
                             });
 
                             $("#hack-loader").remove();
+
 
                         });
                     });
