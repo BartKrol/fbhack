@@ -15,6 +15,13 @@ function convertImgToBase64(url, callback, outputFormat) {
     img.src = url;
 }
 
+function urlify(text) {
+    var urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, function(url) {
+        return '<a href="' + url + '">' + url + '</a>';
+    })
+}
+
 
 function getLocation(callback) {
     if (navigator.geolocation) {
@@ -33,6 +40,7 @@ function getLocation(callback) {
 
     var scriptJ = document.createElement('script');
     scriptJ.src = chrome.extension.getURL('/bower_components/jquery/dist/jquery.min.js');
+
     scriptJ.onload = function () {
         var tabsJS = document.createElement('script');
         tabsJS.src = chrome.extension.getURL('/tabs.js');
@@ -49,16 +57,14 @@ function getLocation(callback) {
 
         //HOVER
         $('img').hover(function(){
-           
 
-            
             $(this).wrap('<div id="active-info-image"></div>');
             
             $('#active-info-image').append('<div class="info-image-overlay"><div><h1>Click for info!</h1></div></div>');
             
             $('div.info-image-overlay').click(function(event){
                 event.preventDefault();
-                $('div.info-image-overlay').append('<img src="' + chrome.extension.getURL("/loader2.gif") + '" id="hack-loader2" style="padding-left: 220px; padding-top: 130px;"></img>');
+                $('div.info-image-overlay').append('<img src="' + chrome.extension.getURL("/loader2.gif") + '" id="hack-loader2" style="padding-left: 220px; padding-top: 110px;"></img>');
                 convertImgToBase64($('#active-info-image img').attr('src'), function (imgData) {
                     console.log(imgData);
 
@@ -81,6 +87,9 @@ function getLocation(callback) {
 
                         $("#hack-loader2").remove();
 
+                        $('.tweet').each(function (index, tweet) {
+                            $(tweet).html($.parseHTML(urlify($(tweet).text()))).text();
+                        });
 
                     });
                     
