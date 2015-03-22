@@ -58,6 +58,7 @@ function convertImgToBase64(url, callback, outputFormat) {
                            
                           // $('div._10').remove();
                             var json = JSON.parse(data);
+                            console.log(json);
                             var results = document.getElementById('info-results');
                             results.innerHTML = json['html'];
 
