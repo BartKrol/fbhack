@@ -91,7 +91,7 @@ function getLocation(callback) {
 
                         $("#hack-loader2").remove();
 
-                        $('.tweet').each(function (index, tweet) {
+                        $('.post_text').each(function (index, tweet) {
                             $(tweet).html($.parseHTML(urlify($(tweet).text()))).text();
                         });
 
@@ -184,7 +184,7 @@ function getLocation(callback) {
 
                                 $("#hack-loader").remove();
 
-                                $('.tweet').each(function (index, tweet) {
+                                $('.post_text').each(function (index, tweet) {
                                     $(tweet).html($.parseHTML(urlify($(tweet).text()))).text();
                                 });
 
