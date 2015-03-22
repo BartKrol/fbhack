@@ -15,17 +15,7 @@ function convertImgToBase64(url, callback, outputFormat) {
     img.src = url;
 }
 
-function fixHistory(history){
-    var pushState = history.pushState;
-    history.pushState = function(state) {
-        if (typeof history.onpushstate == "function") {
-            history.onpushstate({state: state});
-        }
-        alert('heelo');
-        // maybe call onhashchange e.handler
-        return pushState.apply(history, arguments);
-    }
-}
+
 
 function getLocation(callback) {
     if (navigator.geolocation) {
@@ -48,17 +38,18 @@ function getLocation(callback) {
         var tabsJS = document.createElement('script');
         tabsJS.src = chrome.extension.getURL('/tabs.js');
         document.getElementsByTagName('head')[0].appendChild(tabsJS);
-
+        var script = document.createElement('script');
+        script.src = chrome.extension.getURL('/custom_js.js');
+        document.getElementsByTagName('head')[0].appendChild(script);
     };
 
     document.getElementsByTagName('head')[0].appendChild(scriptJ);
 
 
-    var script = document.createElement('script');
-    script.src = chrome.extension.getURL('/custom_js.js');
-    document.getElementsByTagName('head')[0].appendChild(script);
+
 
     setInterval(function () {
+        
         try {
 
             if (document.getElementById('info-data') == null) {
