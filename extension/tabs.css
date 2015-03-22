@@ -23,15 +23,15 @@ ul.tabs li {
 }
 
 ul.tabs li.current {
-    background: rgb(233, 234, 237);
+    background: rgb(126, 127, 130);
     color: #222;
 }
 
 .tab-content {
     display: none;
     background: rgb(233, 234, 237);
-;
     padding: 15px;
+    border-top: 2px solid rgb(126, 127, 130);
 }
 
 .tab-content.current {
