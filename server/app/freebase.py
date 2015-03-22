@@ -81,7 +81,8 @@ class Freebase:
                     "Noble person": "PER",
                     "Mountain": "GEO",
                     "Actor": "PER",
-                    "Hard rock Artist": "PER"}
+                    "Hard rock Artist": "PER",
+                    "Castle": "GEO"}
         if self.category in bindings.keys():
             return bindings[self.category]
         else:
