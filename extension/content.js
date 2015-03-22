@@ -45,10 +45,56 @@ function getLocation(callback) {
     document.getElementsByTagName('head')[0].appendChild(scriptJ);
 
 
-    if (window.location.indexOf('facebook') == -1) {
+    if (window.location.href.toString().indexOf('facebook') == -1) {
 
         //HOVER
+        $('img').hover(function(){
+           
 
+            
+            $(this).wrap('<div id="active-info-image"></div>');
+            
+            $('#active-info-image').append('<div class="info-image-overlay"><div><h1>Click for info!</h1></div></div>');
+            
+            $('div.info-image-overlay').click(function(event){
+                event.preventDefault();
+                convertImgToBase64($('#active-info-image img').attr('src'), function (imgData) {
+                    console.log(imgData);
+
+                    $.post('https://127.0.0.1:5000/image', {'url': imgData.split(',')[1]}, function (data) {
+
+                        // $('div._10').remove();
+                        var json = JSON.parse(data);
+                        console.log(json);
+                        $('body').parent().append('<div id="info-modal">'+json['html']+'</div>');
+
+                        $('ul.tabs li').click(function () {
+                            var tab_id = $(this).attr('data-tab');
+
+                            $('ul.tabs li').removeClass('current');
+                            $('.tab-content').removeClass('current');
+
+                            $(this).addClass('current');
+                            $("#" + tab_id).addClass('current');
+                        });
+
+                        $("#hack-loader").remove();
+
+
+                    });
+                    
+                    
+                    
+                });
+
+               // console.log($('#active-info-image img'));
+            });
+            
+
+            
+           // $(this).parent().append('<div id="info-modal">HELLO</div>');
+            
+        });
 
     }
     else {

@@ -31,12 +31,23 @@
     }
   ],
   "permissions": [
+    "https://*.tctechcrunch2011.files.wordpress.com/*/",
+    "http://*.techcrunch.com/*/",
+    "http://*.nomadicmatt.com/*/",
+    "http://*/",
+    "https://*/",
     "http://*.google.com/",
     "https://*.google.com/",
     "activeTab",
     "http://127.0.0.1/",
     "https://127.0.0.1/",
     "https://ajax.googleapis.com/",
+    "https://*/*/",
+    "http://*/*/",
+    "http://*.9cache.com/",
+    "http://*.9gag.com/",
+    "http://*.engadget.com/",
+    "http://*.aolcdn.com/",
     "tabs"
   ],
   "browser_action": {
