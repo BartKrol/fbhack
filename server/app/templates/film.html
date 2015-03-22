@@ -1,0 +1,12 @@
+{% if preview %}
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='people.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='tabs.js') }}"></script>
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='tabs.css') }}">
+{% endif %}
+
+<h3>{{film["Title"]}}</h3>
+{{ film["Plot"]}}
+
+<div>Duration time: {{film["Runtime"] }}</div>
+<div>{{film["description"]}}</div>

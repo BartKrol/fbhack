@@ -2,6 +2,7 @@ from app.amazon_search import get_amazon_items
 from . import preview
 from app.rome_rio import get_rome_rio
 from app.people import People
+from app.film import Film
 
 
 @preview.route("/amazon/<item>")
@@ -17,3 +18,9 @@ def rome_rio(from_address, to_address):
 def people(person):
     p = People(person)
     return p.get_html(True)
+
+@preview.route("/film/<film>")
+def films(film):
+    f = Film(film, "Description here.")
+    f.get_info()
+    return f.get_html(True)
