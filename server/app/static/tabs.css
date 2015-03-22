@@ -29,8 +29,8 @@ ul.tabs li.current {
 
 .tab-content {
     display: none;
-    background: rgb(233, 234, 237);
-    padding: 15px 15px 1px 15px;
+    background: rgb(233, 234, 237);;
+    padding: 15px;
 }
 
 .tab-content.current {
@@ -50,8 +50,10 @@ ul.tabs li.current {
     -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
     -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 #8a9cc2;
-    margin-left: 60px;
-    padding: 8px 8px 8px 8px;
+}
+
+.route-button {
+    margin-left: 80px;
 }
 
 .fbhack-button:hover,
@@ -66,10 +68,18 @@ ul.tabs li.current {
     filter: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
-    box-shadow: none;}
+    box-shadow: none;
+}
 
 /* overrides extra padding on button elements in Firefox */
 .fbhack-button::-moz-focus-inner {
     padding: 0;
     border: 0;
+}
+
+.get-info-button {
+    width: 100%;
+    padding: 10px 0px;
+    font-size: 18px;
+
 }
