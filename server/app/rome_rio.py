@@ -1,10 +1,13 @@
+import os
+
 from flask import render_template
 import unirest
 
-api_url = 'https://rome2rio12.p.mashape.com/Search'
-api_key = "***REMOVED***"
 
-google_api = '***REMOVED***'
+api_url = 'https://rome2rio12.p.mashape.com/Search'
+api_key = os.environ.get('ROME_RIO_API_KEY')
+
+google_api = os.environ.get('GOOGLE_API_KEY')
 
 
 def get_route(from_name, to_name):

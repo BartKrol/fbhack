@@ -15,9 +15,9 @@ def rome_rio(from_address, to_address):
     return get_rome_rio(from_address, to_address, True)
 
 
-@preview.route("/people/<person>")
-def people(person):
-    p = People(person)
+@preview.route("/people/<person>/<description>")
+def people(person, description):
+    p = People(person, description)
     return p.get_html(True)
 
 

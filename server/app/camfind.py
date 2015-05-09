@@ -11,7 +11,7 @@ from .extensions import db
 api_url_req = "https://camfind.p.mashape.com/image_requests"
 api_url_res = "https://camfind.p.mashape.com/image_responses"
 
-api_key = "***REMOVED***"
+api_key = os.environ.get('CAMFIND_API_KEY')
 
 
 def save_image_from_base64(base64_encoded_image, filename):

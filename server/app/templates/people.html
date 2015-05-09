@@ -1,8 +1,8 @@
 {% if preview %}
-<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='people.css') }}">
-<script type="text/javascript" src="{{ url_for('static', filename='jquery.min.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='tabs.js') }}"></script>
-<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='tabs.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='people.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='tabs.js') }}"></script>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='tabs.css') }}">
 {% endif %}
 
 
@@ -19,43 +19,47 @@
 </ul>
 
 <div id="tab-1" class="tab-content current">
-   <div class="center-info">
-    <img class="circular-img" src="{{ twitter['image'] }}" alt="Twitter Account">
-        </div>
-    <a class="name-info" href="http://twitter.com/{{ twitter['sname'] }}"><h3>{{ twitter["name"] }} (@{{ twitter["sname"] }})</h3></a>
+    <div class="center-info">
+        <img class="circular-img" src="{{ twitter['image'] }}" alt="Twitter Account">
+    </div>
+    <a class="name-info" href="http://twitter.com/{{ twitter['sname'] }}"><h3>{{ twitter["name"] }}
+        (@{{ twitter["sname"] }})</h3></a>
+
     <div class="about-info"><i>
 
         Followers: {{ twitter["followers"] }}
-        </i>
+    </i>
     </div>
-    
+
     <hr/>
-    
+
     {% for tweet in twitter["tweets"] %}
-    <div class="post">
-        <div class="post_text">
-        {{ tweet.text }}
+        <div class="post">
+            <div class="post_text">
+                {{ tweet.text }}
             </div>
-        <div class="tweet_ca">{{tweet.created_at}}</div>
-    </div>
+            <div class="tweet_ca">{{ tweet.created_at }}</div>
+        </div>
     {% endfor %}
 </div>
 <div id="tab-2" class="tab-content">
     <div class="center-info">
         <img class="circular-img" src="{{ facebook['picture'] }}" alt="Profile Picture">
     </div>
-    <a class="name-info" target="_blank" href="http://facebook.com/{{ facebook['id'] }}"><h3>{{ facebook["name"] }}</h3></a>
+    <a class="name-info" target="_blank" href="http://facebook.com/{{ facebook['id'] }}"><h3>{{ facebook["name"] }}</h3>
+    </a>
+
     <div class="info-about"><i>{{ facebook["about"] }}</i></div>
     <hr/>
     {% for post in facebook["posts"] %}
-    <div class="post">
-        <img src="{{ post.picture }}">
+        <div class="post">
+            <img src="{{ post.picture }}">
 
-        <div class="post_text">
-            {{ post.message }}
-            {{ post.story }}
+            <div class="post_text">
+                {{ post.message }}
+                {{ post.story }}
+            </div>
         </div>
-    </div>
 
     {% endfor %}
 </div>

@@ -1,3 +1,4 @@
+import os
 import urllib2
 import urllib
 import json
@@ -6,6 +7,9 @@ import people
 import amazon_search
 import rome_rio
 import film
+
+
+api_key = os.environ.get('FREEBASE_API_KEY')
 
 
 class Freebase:
@@ -41,7 +45,7 @@ class Freebase:
 
     def find_categories(self):
         url = 'https://www.googleapis.com/freebase/v1/search?query=' + urllib.quote_plus(
-            self.tags) + "&key=***REMOVED***"
+            self.tags) + "&key=" + api_key
         response = urllib2.urlopen(url)
         html = response.read()
         article = json.loads(html)
@@ -68,7 +72,7 @@ class Freebase:
         service_url = 'https://www.googleapis.com/freebase/v1/topic'
 
         params = {
-            'key': '***REMOVED***',
+            'key': api_key,
             'filter': 'suggest'
         }
 

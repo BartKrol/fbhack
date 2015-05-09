@@ -1,7 +1,11 @@
+import os
+
 from amazon.api import AmazonAPI
 from flask import render_template
 
-amazon = AmazonAPI('***REMOVED***', '***REMOVED***', '***REMOVED***', region='UK')
+
+amazon = AmazonAPI(os.environ.get('AMAZON_API_KEY'), os.environ.get('AMAZON_API_SECRET'),
+                   os.environ.get('AMAZON_API_TAG'), region='UK')
 
 
 def search_for(text, top=3):

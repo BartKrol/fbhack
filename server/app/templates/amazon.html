@@ -1,37 +1,37 @@
 {% if preview %}
-<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 {% endif %}
 
 {% for product in products %}
 
-<div id="DIV_1">
-    <div id="DIV_2">
-        <div id="DIV_3">
-            <a href="{{ product.offer_url }}" target="_blank"
-               id="A_4"><img alt="Product Details" src="{{ product.medium_image_url }}"
-                             id="IMG_5"/></a>
+    <div id="DIV_1">
+        <div id="DIV_2">
+            <div id="DIV_3">
+                <a href="{{ product.offer_url }}" target="_blank"
+                   id="A_4"><img alt="Product Details" src="{{ product.medium_image_url }}"
+                                 id="IMG_5"/></a>
 
-            <div id="DIV_6">
+                <div id="DIV_6">
+                </div>
             </div>
         </div>
-    </div>
-    <div id="DIV_7">
-        <div id="DIV_8">
-            <a title="{{ titles[product.offer_url] }}"
-               href="{{ product.offer_url }}" target="_blank"
-               id="A_9">
+        <div id="DIV_7">
+            <div id="DIV_8">
+                <a title="{{ titles[product.offer_url] }}"
+                   href="{{ product.offer_url }}" target="_blank"
+                   id="A_9">
 
-            <h2 id="H2_10">
-                {{ titles[product.offer_url] }}
-            </h2>
-            </a>
-        </div>
-        <div id="DIV_11">
-            <a href="{{ product.offer_url }}" target="_blank"
-               id="A_12"><span id="SPAN_13">£{{ '%0.2f' % product.list_price[0]|float }}</span></a><i id="I_15"></i>
-        </div>
+                    <h2 id="H2_10">
+                        {{ titles[product.offer_url] }}
+                    </h2>
+                </a>
+            </div>
+            <div id="DIV_11">
+                <a href="{{ product.offer_url }}" target="_blank"
+                   id="A_12"><span id="SPAN_13">£{{ '%0.2f' % product.list_price[0]|float }}</span></a><i id="I_15"></i>
+            </div>
 
+        </div>
     </div>
-</div>
 
 {% endfor %}

@@ -1,4 +1,5 @@
 import json
+import os
 import urllib2
 import urllib
 
@@ -6,12 +7,19 @@ import tweepy
 from flask import render_template
 
 
+facebook_token = os.environ.get('FACEBOOK_TOKEN')
+twitter_secret = os.environ.get('TWITTER_SECRET')
+twitter_api = os.environ.get('TWITTER_API_KEY')
+a_token = os.environ.get('TWITTER_TOKEN')
+a_secret = os.environ.get('TWITTER_TOKEN_SECRET')
+
+
 class People:
     def __init__(self, name, description):
         self.name = name
         self.wikipedia = description
 
-        self.facebook_token = "***REMOVED***"
+        self.facebook_token = facebook_token
         self.facebook_api = "https://graph.facebook.com/v2.2/"
 
         self.twitter = {}
@@ -46,11 +54,9 @@ class People:
     def p_twitter(self):
         twitter_mappings = {"queen elizabeth": "BritishMonarchy"}
 
-        api_key = "***REMOVED***"
-        api_secret = "***REMOVED***"
+        api_key = twitter_api
+        api_secret = twitter_secret
 
-        a_token = "***REMOVED***"
-        a_secret = "***REMOVED***"
         auth = tweepy.OAuthHandler(api_key, api_secret)
 
         auth.secure = True
