@@ -8,12 +8,12 @@ google_api = '***REMOVED***'
 
 
 def get_route(from_name, to_name):
-    response = unirest.get(api_url + "?currency=GBP&dName=" + to_name + "&oName=" + from_name,
-                           headers={
-                               "X-Mashape-Key": api_key,
-                               "Accept": "application/json"
-                           }
-    )
+    headers = {
+        "X-Mashape-Key": api_key,
+        "Accept": "application/json"
+    }
+
+    response = unirest.get(api_url + "?currency=GBP&dName=" + to_name + "&oName=" + from_name, headers=headers)
 
     return response.body
 
@@ -32,7 +32,6 @@ def duration_hours(value):
 
 
 def get_rome_rio(from_name, to_name, preview=False):
-
     data = get_route(from_name, to_name)
     places = data['places']
 

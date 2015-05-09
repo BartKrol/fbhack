@@ -15,7 +15,7 @@ def search_for(text, top=3):
         if product.title is not None and product.price_and_currency is not None:
             title = product.title
             if len(title) > 50:
-                title = title[:50]+ "..."
+                title = title[:50] + "..."
 
             product_titles[product.offer_url] = title
             top_products.append(product)
@@ -23,7 +23,7 @@ def search_for(text, top=3):
             if top == 0:
                 break
 
-    return (top_products,product_titles)
+    return top_products, product_titles
 
 
 def get_amazon_items(text, preview):

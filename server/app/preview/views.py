@@ -14,10 +14,12 @@ def amazon(item):
 def rome_rio(from_address, to_address):
     return get_rome_rio(from_address, to_address, True)
 
+
 @preview.route("/people/<person>")
 def people(person):
     p = People(person)
     return p.get_html(True)
+
 
 @preview.route("/film/<film>")
 def films(film):

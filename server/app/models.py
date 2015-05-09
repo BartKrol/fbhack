@@ -6,7 +6,7 @@ class Image(db.Model):
     md5 = db.Column(db.Text())
     token = db.Column(db.Text())
     tag = db.Column(db.Text())
-    
+
     def __init__(self, md5, token, tag=''):
         self.md5 = md5
         self.token = token

@@ -1,9 +1,10 @@
-import tweepy
 import json
 import urllib2
 import urllib
+
+import tweepy
 from flask import render_template
-import unirest
+
 
 class People:
     def __init__(self, name, description):
@@ -29,7 +30,8 @@ class People:
 
         if link in wiki_maps:
             link = wiki_maps[link]
-        api = "http://en.wikipedia.org/w/api.php?format=json&action=query&titles="+urllib.quote_plus(link)+"&prop=revisions&rvprop=content&continue="
+        api = "http://en.wikipedia.org/w/api.php?format=json&action=query&titles=" + urllib.quote_plus(
+            link) + "&prop=revisions&rvprop=content&continue="
         response = urllib2.urlopen(api)
         html = response.read()
         message = json.loads(html)
@@ -40,14 +42,6 @@ class People:
             self.p_wikipedia_(message["query"]["normalized"][0]["to"])
         else:
             pass
-
-      #  for key in self.wikipedia.keys():
-      #      if "revisions" in self.wikipedia[key]:
-      #          if self.wikipedia[key]["revisions"][0]["*"].startswith("#REDIRECT"):
-      #              tokens = self.wikipedia[key]["revisions"][0]["*"]
-      #              tokens = tokens.split("[[")
-      #              tokens = tokens[1].split("]]")
-      #              self.p_wikipedia_(tokens[0])
 
     def p_twitter(self):
         twitter_mappings = {"queen elizabeth": "BritishMonarchy"}
@@ -77,7 +71,7 @@ class People:
                         "followers": user.followers_count, "sname": user.screen_name}
 
     def fb_img(self, query):
-        return self.facebook_api+query+"&access_token="+self.facebook_token
+        return self.facebook_api + query + "&access_token=" + self.facebook_token
 
     def fb_json(self, query):
         token = self.fb_img(query)
@@ -93,15 +87,12 @@ class People:
         if self.name in fb_mappings:
             id = fb_mappings[self.name]
         else:
-            search = self.fb_json('search?q='+urllib.quote_plus(self.name)+"&type=page")
+            search = self.fb_json('search?q=' + urllib.quote_plus(self.name) + "&type=page")
             id = search['data'][0]["id"]
 
-        page = self.fb_json(id+"?")
+        page = self.fb_json(id + "?")
 
-        posts = self.fb_json(id+"/posts?")
-        #for item in search['data']:
-        #    if item['category'] == "Public figure":
-        #        print item['id']
+        posts = self.fb_json(id + "/posts?")
         about = ""
         if "about" in page:
             about = page["about"]
@@ -115,7 +106,9 @@ class People:
                     print post["message"]
             new_posts.append(post)
 
-        self.facebook = {"id": id, "name": page["name"], "about": about, "posts": new_posts, "picture": self.fb_img(id+"/picture?")}
+        self.facebook = {"id": id, "name": page["name"], "about": about, "posts": new_posts,
+                         "picture": self.fb_img(id + "/picture?")}
 
     def get_html(self, preview):
-        return render_template('people.html', facebook=self.facebook, twitter=self.twitter, preview=preview, wikipedia=self.wikipedia)
+        return render_template('people.html', facebook=self.facebook, twitter=self.twitter, preview=preview,
+                               wikipedia=self.wikipedia)

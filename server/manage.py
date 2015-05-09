@@ -24,23 +24,6 @@ def runserver():
     app.run(host='127.0.0.1', port=5000, debug=True,
             ssl_context='adhoc')
 
-@manager.command
-def test(coverage=False):
-    """Run unit tests."""
-    import nose2
-
-    script_path = os.path.realpath(__file__)
-    server_path = os.path.dirname(script_path)  # + '/tests'
-
-    # Remember that the first argument is always current file
-    arguments = [script_path, '-s', server_path]
-    plugins = ['nose2.plugins.layers']
-
-    if coverage:
-        arguments.append('--with-coverage')
-
-    return nose2.discover(argv=arguments, plugins=plugins)
-
 
 # Populate commands
 manager.add_command('shell', Shell(make_context=make_shell_context, use_bpython=True))

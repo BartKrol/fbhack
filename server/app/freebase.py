@@ -1,14 +1,16 @@
 import urllib2
 import urllib
 import json
+
 import people
 import amazon_search
 import rome_rio
 import film
 
+
 class Freebase:
-    def __init__(self,tags):
-        
+    def __init__(self, tags):
+
         colours = ['black',
                    'blue',
                    'brown',
@@ -22,13 +24,13 @@ class Freebase:
                    'yellow',
                    'the',
                    'a']
-        
+
         tags = tags.lower().split(" ")
         f_tags = []
         for t in tags:
             if t not in colours:
                 f_tags.append(t)
-        
+
         self.tags = " ".join(f_tags[:2])
         self.name = ""
         self.category = ""
@@ -38,7 +40,8 @@ class Freebase:
         self.find_categories()
 
     def find_categories(self):
-        url = 'https://www.googleapis.com/freebase/v1/search?query='+urllib.quote_plus(self.tags)+"&key=***REMOVED***"
+        url = 'https://www.googleapis.com/freebase/v1/search?query=' + urllib.quote_plus(
+            self.tags) + "&key=***REMOVED***"
         response = urllib2.urlopen(url)
         html = response.read()
         article = json.loads(html)
@@ -65,14 +68,17 @@ class Freebase:
         service_url = 'https://www.googleapis.com/freebase/v1/topic'
 
         params = {
-          'key': '***REMOVED***',
-          'filter': 'suggest'
+            'key': '***REMOVED***',
+            'filter': 'suggest'
         }
 
         url = service_url + mid + '?' + urllib.urlencode(params)
         topic = json.loads(urllib.urlopen(url).read())
         try:
-            self.description = topic["property"]["/common/topic/article"]["values"][0]["property"]["/common/document/text"]["values"][0]["value"] +"..."
+            self.description = \
+                topic["property"]["/common/topic/article"]["values"][0]["property"]["/common/document/text"]["values"][
+                    0][
+                    "value"] + "..."
         except KeyError:
             self.description = ""
 
@@ -114,8 +120,7 @@ class Freebase:
         elif mod == "MOV":
             f = film.Film(self.tags, self.description)
             f.get_info()
-            return f.get_html(False)
-
+            return f.get_html()
 
 
 def check(token):
