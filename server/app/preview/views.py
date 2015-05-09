@@ -25,4 +25,4 @@ def people(person):
 def films(film):
     f = Film(film, "Description here.")
     f.get_info()
-    return f.get_html(True)
+    return f.get_html()

@@ -58,8 +58,6 @@ class People:
         auth.set_access_token(a_token, a_secret)
         api = tweepy.API(auth)
 
-        user = {}
-
         if twitter_mappings.has_key(self.name):
             user = api.search_users(twitter_mappings[self.name])[0]
         else:
@@ -83,7 +81,6 @@ class People:
 
         fb_mappings = {"queen elizabeth": "TheBritishMonarchy"}
 
-        id = 0
         if self.name in fb_mappings:
             id = fb_mappings[self.name]
         else:

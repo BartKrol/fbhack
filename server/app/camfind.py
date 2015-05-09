@@ -25,9 +25,7 @@ def get_image_hash(image_url):
     filename = str(int(time.time())) + '.jpg'
     save_image_from_base64(image_url, filename)
     hash = hashlib.md5(open(filename, 'rb').read()).hexdigest()
-    # os.remove(filename)
-
-    return (hash, filename)
+    return hash, filename
 
 
 def get_image_token(image_url):
