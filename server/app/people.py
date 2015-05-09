@@ -57,8 +57,6 @@ class People:
         api_key = twitter_api
         api_secret = twitter_secret
 
-        a_token = "***REMOVED***"
-        a_secret = "***REMOVED***"
         auth = tweepy.OAuthHandler(api_key, api_secret)
 
         auth.secure = True
